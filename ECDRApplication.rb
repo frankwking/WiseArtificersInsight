@@ -1,10 +1,9 @@
 class ECDRApplication
-  #This is a test of me using Bitbucket
-  @@difficulty = 5
-  @@flawlessHandiworkMethod = 1
-  @@flawlessHandiworkRepurchase = 1
-  @@willpowerSpend = 1
-  @@stuntSuccesses = 0
+  @difficulty = 5
+  @flawlessHandiworkMethod = 1
+  @flawlessHandiworkRepurchase = 1
+  @willpowerSpend = 1
+  @stuntSuccesses = 0
 
   def self.collectAttemptStatistics(numAttempts)
     attemptArray = Array.new(numAttempts)
@@ -15,7 +14,7 @@ class ECDRApplication
   def self.rollAttempt
     initialPoolSize = 23
     poolArray = [0,0,0,0,0,0]
-    poolArray.fill {|j| rollPool(initialPoolSize) -  @@difficulty + @@willpowerSpend + @@stuntSuccesses}
+    poolArray.fill {|j| rollPool(initialPoolSize) -  @difficulty + @willpowerSpend + @stuntSuccesses}
     totSuc = poolArray.inject(0,:+)
   end
 
@@ -37,7 +36,7 @@ class ECDRApplication
       when 4
       when 5
       when 6
-        if @@flawlessHandiworkRepurchase
+        if @flawlessHandiworkRepurchase
             poolSize = poolSize + 1;
         end
       when 7
@@ -48,13 +47,13 @@ class ECDRApplication
         successes = successes + 1;
       when 0
         successes = successes + 2;
-        if @@flawlessHandiworkMethod
+        if @flawlessHandiworkMethod
             poolSize = poolSize + 1;
         end
       end
     end
 
-    if (successes -  @@difficulty) < 0 && resultAry[1].to_i > 0
+    if (successes -  @difficulty) < 0 && resultAry[1].to_i > 0
       sucesses = -1
     end
     successes
