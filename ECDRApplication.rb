@@ -1,5 +1,5 @@
 class ECDRApplication
-
+  #This is a test of me using Bitbucket
   @@difficulty = 5
   @@flawlessHandiworkMethod = 1
   @@flawlessHandiworkRepurchase = 1
