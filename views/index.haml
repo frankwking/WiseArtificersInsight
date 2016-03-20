@@ -2,3 +2,19 @@
 %div= "Initial size of crafting die pools: " + ECDRInstance.initialPoolSize.to_s
 %strong= "Standard Deviation of successes per attempt: " + ECDRInstance.stdDevSuc.to_s
 %strong= "Median of successes per attempt: " + ECDRInstance.medianSuc.to_s
+%form{ :action => "", :method => "post"}
+  %fieldset
+    %ul
+      %li
+        %label{:for => "relevantCraft"} Relevant Craft:
+        - 6.times do |i|
+          %input{type: "radio", name: "relevantCraftRadio", class: "radio", value: i, checked: true} #{i}
+      %li
+        %label{:for => "artifactCraft"} Craft(Artifact):
+        - 6.times do |i|
+          %input{type: "radio", name: "artifactCraftRadio", class: "radio", value: i, checked: true} #{i}
+      %li
+        %label{:for => "attribute"} Attribute:
+        - 5.times do |i|
+          %input{type: "radio", name: "attributeRadio", class: "radio", value: i+1, checked: true} #{i+1}
+    %input{:type => "submit", :value => "Send", :class => "button"}
