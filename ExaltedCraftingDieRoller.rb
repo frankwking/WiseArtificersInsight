@@ -52,7 +52,7 @@ class ECDRApplication
       send (key+'=').to_sym, value.to_i
     end
     collectAttemptStatistics
-    {mean: @meanSuc, median: @medianSuc, std: @stdDevSuc, initPool: @initialPoolSize}.to_json
+    {meanSuc: @meanSuc, medianSuc: @medianSuc, stdDevSuc: @stdDevSuc, initialPoolSize: @initialPoolSize}.to_json
   end
 
   def collectAttemptStatistics

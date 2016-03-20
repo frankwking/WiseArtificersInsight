@@ -3,11 +3,13 @@ function fetchResultsJS(theForm) {
   r.open("GET", "/exaltedcraftingdieroller?"+param(formToParams(theForm)), true);
   r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
-    alert("Success: " + r.responseText);
+    response = JSON.parse(r.responseText);
+    console.log(r.responseText);
+    console.log(response);
+    document.getElementById("meanSuc").innerHTML = roundStringToPlaces(response["meanSuc"]);
   };
-  console.log(param(formToParams(theForm)))
   r.send();
-  console.log(r)
+
 }
 
 function param(object) {
@@ -32,6 +34,9 @@ function formToParams(theForm) {
       params[validKeys[i]] = elements[validKeys[i]].value;
     }
   }
-  console.log(params);
   return params
+}
+
+function roundStringToPlaces(s, p=2) {
+  return s.split('.').map(function(sub, i) { return i ? sub.slice(0,p) : sub }).join('.')
 }
