@@ -1,3 +1,4 @@
+require 'json'
 class ECDRApplication
     #Logical structure: pools inside attempts inside dataset
   def initialize
@@ -45,6 +46,11 @@ class ECDRApplication
   attr_reader :meanSuc
   attr_reader :stdDevSuc
   attr_reader :medianSuc
+
+  def resultsJson
+    collectAttemptStatistics
+    {mean: @meanSuc, median: @medianSuc, std: @stdDevSuc}.to_json
+  end
 
   def collectAttemptStatistics
     @attemptArray = NumArray.new(@numAttempts)
