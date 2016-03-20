@@ -25,7 +25,8 @@ class ECDRApplication
     @numAttempts = 101
     @meanSuc = 0
     @stdDevSuc = 0
-    @attemptArray = Array.new(@numAttempts)
+    @medianSuc = 0
+    @attemptArray = NumArray.new(@numAttempts)
   end
 
   attr_accessor :difficulty
@@ -42,12 +43,17 @@ class ECDRApplication
   attr_accessor :flawlessHandiworkRepurchase
   attr_accessor :numAttempts
   attr_reader :meanSuc
+  attr_reader :stdDevSuc
+  attr_reader :medianSuc
 
   def collectAttemptStatistics
-    @attemptArray = Array.new(@numAttempts)
+    @attemptArray = NumArray.new(@numAttempts)
     @attemptArray.fill {|k| rollAttempt}
-    @meanSuc = @attemptArray.inject(0,:+) / @numAttempts.to_f
-    #@meanSuc = mean(@attemptArray)
+    #@meanSuc = @attemptArray.inject(0,:+) / @numAttempts.to_f
+    @meanSuc = @attemptArray.mean
+    @stdDevSuc = @attemptArray.sigma
+    @medianSuc = @attemptArray.median
+    @meanSuc
   end
 
   def rollAttempt
