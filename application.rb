@@ -12,5 +12,5 @@ get '/' do
 end
 
 get '/exaltedcraftingdieroller' do
-  json ECDRInstance.resultsJson params
+  json(ECDRInstance.resultsJson(params), encoder: :to_json, content_type: :js)
 end

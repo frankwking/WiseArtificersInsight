@@ -1,4 +1,3 @@
-require 'json'
 class ECDRApplication
     #Logical structure: pools inside attempts inside dataset
   def initialize
@@ -52,7 +51,7 @@ class ECDRApplication
       send (key+'=').to_sym, value.to_i
     end
     collectAttemptStatistics
-    {meanSuc: @meanSuc, medianSuc: @medianSuc, stdDevSuc: @stdDevSuc, initialPoolSize: @initialPoolSize}.to_json
+    {meanSuc: @meanSuc, medianSuc: @medianSuc, stdDevSuc: @stdDevSuc, initialPoolSize: @initialPoolSize}
   end
 
   def collectAttemptStatistics

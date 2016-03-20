@@ -6,7 +6,8 @@ function fetchResultsJS(theForm) {
     response = JSON.parse(r.responseText);
     console.log(r.responseText);
     console.log(response);
-    document.getElementById("meanSuc").innerHTML = roundStringToPlaces(response["meanSuc"]);
+    console.log(response["meanSuc"]);
+    document.getElementById("meanSuc").innerHTML = roundToPlacesString(response["meanSuc"]);
   };
   r.send();
 
@@ -37,6 +38,6 @@ function formToParams(theForm) {
   return params
 }
 
-function roundStringToPlaces(s, p=2) {
-  return s.split('.').map(function(sub, i) { return i ? sub.slice(0,p) : sub }).join('.')
+function roundToPlacesString(s, p=2) {
+  return s.toString().split('.').map(function(sub, i) { return i ? sub.slice(0,p) : sub }).join('.')
 }
