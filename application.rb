@@ -12,5 +12,5 @@ get '/' do
 end
 
 get '/exaltedcraftingdieroller' do
-  json ECDRInstance.resultsJson
+  json ECDRInstance.resultsJson params
 end

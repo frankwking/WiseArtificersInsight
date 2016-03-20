@@ -1,20 +1,20 @@
 %title= "Exalted Crafting"
 %h2= "Exalted Crafting Die Roller"
-%form{ :action => "", :method => "post"}
+%form{id: "craftForm", onsubmit: "return fetchResultsJS(this);", action: "#"}
   %fieldset
     %ul
       %li
-        %label{:for => "relevantCraft"} Relevant Craft:
+        %label{:for => "craftAbility"} Relevant Craft:
         - 6.times do |i|
-          %input{type: "radio", name: "relevantCraftRadio", class: "radio", value: i, checked: true} #{i}
+          %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: true} #{i}
       %li
-        %label{:for => "artifactCraft"} Craft(Artifact):
+        %label{:for => "craftArtifact"} Craft(Artifact):
         - 6.times do |i|
-          %input{type: "radio", name: "artifactCraftRadio", class: "radio", value: i, checked: true} #{i}
+          %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: true} #{i}
       %li
-        %label{:for => "attribute"} Attribute:
+        %label{:for => "craftAttribute"} Attribute:
         - 5.times do |i|
-          %input{type: "radio", name: "attributeRadio", class: "radio", value: i+1, checked: true} #{i+1}
+          %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: true} #{i+1}
     %input{:type => "submit", :value => "Send", :class => "button"}
 %div
   %strong Mean successes per attempt:

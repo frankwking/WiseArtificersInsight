@@ -47,9 +47,12 @@ class ECDRApplication
   attr_reader :stdDevSuc
   attr_reader :medianSuc
 
-  def resultsJson
+  def resultsJson(params)
+    params.each do |key, value|
+      send (key+'=').to_sym, value.to_i
+    end
     collectAttemptStatistics
-    {mean: @meanSuc, median: @medianSuc, std: @stdDevSuc}.to_json
+    {mean: @meanSuc, median: @medianSuc, std: @stdDevSuc, initPool: @initialPoolSize}.to_json
   end
 
   def collectAttemptStatistics
@@ -63,7 +66,7 @@ class ECDRApplication
   end
 
   def rollAttempt
-    @initialPoolSize =  ([@craftAbility, @craftArtifact].max + @craftAttribute)*(1 + @fullExcellency) + @stuntDice + @craftSpeciality
+    @initialPoolSize =  ([@craftAbility, @craftArtifact].min + @craftAttribute)*(1 + @fullExcellency) + @stuntDice + @craftSpeciality
     poolArray = [0,0,0,0,0,0]
     poolArray.fill {|j| rollPool -  @difficulty + @willpowerSpend + @stuntSuccesses}
     totSuc = poolArray.inject(0,:+)
