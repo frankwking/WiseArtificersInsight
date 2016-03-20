@@ -1,7 +1,5 @@
-%strong= "Mean successes per attempt: " + ECDRInstance.collectAttemptStatistics.to_s
-%div= "Initial size of crafting die pools: " + ECDRInstance.initialPoolSize.to_s
-%strong= "Standard Deviation of successes per attempt: " + ECDRInstance.stdDevSuc.to_s
-%strong= "Median of successes per attempt: " + ECDRInstance.medianSuc.to_s
+%title= "Exalted Crafting"
+%h2= "Exalted Crafting Die Roller"
 %form{ :action => "", :method => "post"}
   %fieldset
     %ul
@@ -18,3 +16,17 @@
         - 5.times do |i|
           %input{type: "radio", name: "attributeRadio", class: "radio", value: i+1, checked: true} #{i+1}
     %input{:type => "submit", :value => "Send", :class => "button"}
+%div
+  %strong Mean successes per attempt:
+  %strong{id: "meanSuc"}= ECDRInstance.collectAttemptStatistics.to_s
+%div
+  %span Standard Deviation of successes per attempt:
+  %span{id: "stdDevSuc"}= ECDRInstance.stdDevSuc.to_s
+%div
+  %span Median of successes per attempt:
+  %span{id: "medianSuc"}= ECDRInstance.medianSuc.to_s
+%div
+  %span Initial size of crafting die pools:
+  %span{id: "initialPoolSize"}= ECDRInstance.initialPoolSize.to_s
+
+%script{type: "text/javascript", src: "index.js"}

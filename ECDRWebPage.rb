@@ -9,3 +9,7 @@ ECDRInstance = ECDRApplication.new
 get '/' do
   haml:index
 end
+
+get '/script/index.js' do
+  send_file 'script/index.js'
+end
