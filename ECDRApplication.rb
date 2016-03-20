@@ -1,25 +1,64 @@
 class ECDRApplication
-  @difficulty = 5
-  @flawlessHandiworkMethod = 1
-  @flawlessHandiworkRepurchase = 1
-  @willpowerSpend = 1
-  @stuntSuccesses = 0
+    #Logical structure: pools inside attempts inside dataset
+  def initialize
+    #Crafting Rules
+    @difficulty = 5
 
-  def self.collectAttemptStatistics(numAttempts)
-    attemptArray = Array.new(numAttempts)
-    attemptArray.fill {|k| rollAttempt}
-    meanSuc = attemptArray.inject(0,:+) / numAttempts
+    #Per Roll Options
+    @fullExcellency = 1
+    @willpowerSpend = 1
+    @stuntDice = 2
+    @stuntSuccesses = 0
+
+    #Character Attributes
+    @craftAbility = 5
+    @craftArtifact = 5
+    @craftAttribute = 5
+    @craftSpeciality = 1
+    @initialPoolSize = ([@craftAbility, @craftArtifact].max + @craftAttribute)*(1+ @fullExcellency) + @stuntDice + @craftSpeciality
+
+    #Charms Used
+    @flawlessHandiworkMethod = 1
+    @flawlessHandiworkRepurchase = 1
+
+    #Dataset
+    @numAttempts = 101
+    @meanSuc = 0
+    @stdDevSuc = 0
+    @attemptArray = Array.new(@numAttempts)
   end
 
-  def self.rollAttempt
-    initialPoolSize = 23
+  attr_accessor :difficulty
+  attr_accessor :fullExcellency
+  attr_accessor :willpowerSpend
+  attr_accessor :stuntDice
+  attr_accessor :stuntSuccesses
+  attr_accessor :craftAbility
+  attr_accessor :craftArtifact
+  attr_accessor :craftAttribute
+  attr_accessor :craftSpeciality
+  attr_reader :initialPoolSize
+  attr_accessor :flawlessHandiworkMethod
+  attr_accessor :flawlessHandiworkRepurchase
+  attr_accessor :numAttempts
+  attr_reader :meanSuc
+
+  def collectAttemptStatistics
+    @attemptArray = Array.new(@numAttempts)
+    @attemptArray.fill {|k| rollAttempt}
+    @meanSuc = @attemptArray.inject(0,:+) / @numAttempts.to_f
+    #@meanSuc = mean(@attemptArray)
+  end
+
+  def rollAttempt
+    @initialPoolSize =  ([@craftAbility, @craftArtifact].max + @craftAttribute)*(1 + @fullExcellency) + @stuntDice + @craftSpeciality
     poolArray = [0,0,0,0,0,0]
-    poolArray.fill {|j| rollPool(initialPoolSize) -  @difficulty + @willpowerSpend + @stuntSuccesses}
+    poolArray.fill {|j| rollPool -  @difficulty + @willpowerSpend + @stuntSuccesses}
     totSuc = poolArray.inject(0,:+)
   end
 
-  def self.rollPool(initialPoolSize)
-    poolSize = initialPoolSize
+  def rollPool
+    poolSize = @initialPoolSize
 
     i = 0
     successes = 0
