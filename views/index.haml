@@ -8,7 +8,7 @@
         - 6.times do |i|
           %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: true} #{i}
       %li
-        %label{:for => "craftArtifact"} Craft(Artifact):
+        %label{:for => "craftArtifact"} Craft (Artifact):
         - 6.times do |i|
           %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: true} #{i}
       %li
@@ -18,10 +18,10 @@
     %input{:type => "submit", :value => "Send", :class => "button"}
 %div
   %strong Mean successes per attempt:
-  %strong{id: "meanSuc"}= ECDRInstance.collectAttemptStatistics.to_s
+  %strong{id: "meanSuc"}= ECDRInstance.collectAttemptStatistics.round(2).to_s
 %div
   %span Standard Deviation of successes per attempt:
-  %span{id: "stdDevSuc"}= ECDRInstance.stdDevSuc.to_s
+  %span{id: "stdDevSuc"}= ECDRInstance.stdDevSuc.round(2).to_s
 %div
   %span Median of successes per attempt:
   %span{id: "medianSuc"}= ECDRInstance.medianSuc.to_s
