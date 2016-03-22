@@ -3,23 +3,18 @@ function fetchResultsJS(theForm,event) {
   var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute"];
   var formBooleanArray = ["craftSpeciality"];
   var hash = {}
-  $.each(formIntegerArray, function(index, item) {hash.item = theForm.elements.namedItem(item).value});
-  $.each(formBooleanArray, function(index, item) {hash.item = (~~theForm.elements.namedItem(item).checked)});
-  //console.log(hash.craftAbility);
+  $.each(formIntegerArray, function(index, item) { hash[item] = theForm.elements.namedItem(item).value;});
+  $.each(formBooleanArray, function(index, item) {hash[item] = (~~theForm.elements.namedItem(item).checked);});
   $.ajax({
     type: 'GET',
     url: '/exaltedcraftingdieroller',
-    data: {
-      craftAbility: theForm.elements["craftAbility"].value,
-      craftArtifact: theForm.elements["craftArtifact"].value,
-      craftSpeciality: (~~theForm.elements["craftSpeciality"].checked),
-      craftAttribute: (theForm.elements["craftAttribute"].value)
-    },
+    data: hash,
     dataType: 'json',
     success: function(data) {
       document.getElementById("meanSuc").innerHTML = data["meanSuc"].toFixed(2);
       document.getElementById("medianSuc").innerHTML = data["medianSuc"];
       document.getElementById("stdDevSuc").innerHTML = data["stdDevSuc"].toFixed(2);
+      // Need to update the initialPoolSize here
     }
   })
 }
