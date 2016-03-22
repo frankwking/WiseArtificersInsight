@@ -57,7 +57,6 @@ class ECDRApplication
   def collectAttemptStatistics
     @attemptArray = NumArray.new(@numAttempts)
     @attemptArray.fill {|k| rollAttempt}
-    #@meanSuc = @attemptArray.inject(0,:+) / @numAttempts.to_f
     @meanSuc = @attemptArray.mean
     @stdDevSuc = @attemptArray.sigma
     @medianSuc = @attemptArray.median
@@ -89,7 +88,7 @@ class ECDRApplication
       when 4
       when 5
       when 6
-        if @flawlessHandiworkRepurchase
+        if @flawlessHandiworkRepurchase > 0
             poolSize = poolSize + 1;
         end
       when 7
@@ -100,7 +99,7 @@ class ECDRApplication
         successes = successes + 1;
       when 0
         successes = successes + 2;
-        if @flawlessHandiworkMethod
+        if @flawlessHandiworkMethod > 0
             poolSize = poolSize + 1;
         end
       end
