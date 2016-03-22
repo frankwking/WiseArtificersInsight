@@ -12,10 +12,13 @@
         - 6.times do |i|
           %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: true} #{i}
       %li
+        %label{:for => "craftSpeciality"} Craft Speciality:
+        %input{type: "checkbox", name: "craftSpeciality", class: "checkbox"}
+      %li
         %label{:for => "craftAttribute"} Attribute:
         - 5.times do |i|
           %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: true} #{i+1}
-    %input{:type => "submit", :value => "Send", :class => "button"}
+    %input{:type => "submit", :value => "Roll", :class => "button"}
 %div
   %strong Mean successes per attempt:
   %strong{id: "meanSuc"}= ECDRInstance.collectAttemptStatistics.round(2).to_s

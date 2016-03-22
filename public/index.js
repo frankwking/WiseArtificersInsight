@@ -1,11 +1,13 @@
 function fetchResultsJS(theForm) {
+  console.log(theForm.elements["craftSpeciality"]);
   $.ajax({
     type: 'GET',
     url: '/exaltedcraftingdieroller',
     data: {
       craftAbility: theForm.elements["craftAbility"].value,
       craftArtifact: theForm.elements["craftArtifact"].value,
-      craftAttribute: theForm.elements["craftAttribute"].value
+      //craftSpeciality: theForm.elements["craftSpeciality"].value,
+      craftAttribute: (theForm.elements["craftAttribute"].value)
     },
     dataType: 'json',
     success: function(data) {
