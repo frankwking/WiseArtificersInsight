@@ -18,15 +18,36 @@
         %label{for: "craftAttribute"} Attribute:
         - 5.times do |i|
           %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: true} #{i+1}
+      %li
+        %label{for: "fullExcellency"} Using full Craft Excellency:
+        %input{type: "checkbox", name: "fullExcellency", class: "checkbox", checked: true}
+      %li
+        %label{for: "stuntDice"} Stunt Dice:
+        %input{type: "radio", name: "stuntDice", class: "radio", value: 0, checked: false} 0
+        %input{type: "radio", name: "stuntDice", class: "radio", value: 2, checked: true} 2
+      %li
+        %label{for: "stuntSuccesses"} Stunt Successes:
+        %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 0, checked: true} 0
+        %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 1, checked: false} 1
+        %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 2, checked: false} 2
+      %li
+        %label{for: "willpowerSpend"} Spending Willpower:
+        %input{type: "checkbox", name: "willpowerSpend", class: "checkbox", checked: true}
+      %li
+        %label{for: "flawlessHandiworkMethod"} Using Flawless Handiwork Method:
+        %input{type: "checkbox", name: "flawlessHandiworkMethod", class: "checkbox", checked: true}
+      %li
+        %label{for: "flawlessHandiworkRepurchase"} Using Flawless Handiwork Method Repurchase:
+        %input{type: "checkbox", name: "flawlessHandiworkRepurchase", class: "checkbox", checked: true}
     %input{type: "submit", value: "Roll", class: "button"}
 %div
-  %strong Mean successes per attempt:
+  %strong Mean threshold successes per attempt:
   %strong{id: "meanSuc"}= ECDRInstance.collectAttemptStatistics.round(2).to_s
 %div
-  %span Standard Deviation of successes per attempt:
+  %span Standard Deviation of threshold successes per attempt:
   %span{id: "stdDevSuc"}= ECDRInstance.stdDevSuc.round(2).to_s
 %div
-  %span Median of successes per attempt:
+  %span Median of threshold successes per attempt:
   %span{id: "medianSuc"}= ECDRInstance.medianSuc.to_s
 %div
   %span Initial size of crafting die pools:
