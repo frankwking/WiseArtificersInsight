@@ -1,10 +1,11 @@
-function fetchResultsJS(theForm) {
+function fetchResultsJS(theForm,event) {
+  event.preventDefault();
   var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute"];
   var formBooleanArray = ["craftSpeciality"];
   var hash = {}
   $.each(formIntegerArray, function(index, item) {hash.item = theForm.elements.namedItem(item).value});
   $.each(formBooleanArray, function(index, item) {hash.item = (~~theForm.elements.namedItem(item).checked)});
-  console.log(hash.craftAbility);
+  //console.log(hash.craftAbility);
   $.ajax({
     type: 'GET',
     url: '/exaltedcraftingdieroller',
