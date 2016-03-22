@@ -1,4 +1,10 @@
 function fetchResultsJS(theForm) {
+  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute"];
+  var formBooleanArray = ["craftSpeciality"];
+  var hash = {}
+  $.each(formIntegerArray, function(index, item) {hash.item = theForm.elements.namedItem(item).value});
+  $.each(formBooleanArray, function(index, item) {hash.item = (~~theForm.elements.namedItem(item).checked)});
+  console.log(hash.craftAbility);
   $.ajax({
     type: 'GET',
     url: '/exaltedcraftingdieroller',
@@ -15,4 +21,9 @@ function fetchResultsJS(theForm) {
       document.getElementById("stdDevSuc").innerHTML = data["stdDevSuc"].toFixed(2);
     }
   })
+}
+
+function isFormInteger(value){
+  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute"]
+  return $.inArray(value, formIntegerArray) > -1
 }
