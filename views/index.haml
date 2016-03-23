@@ -39,6 +39,9 @@
       %li
         %label{for: "flawlessHandiworkRepurchase"} Using Flawless Handiwork Method Repurchase:
         %input{type: "checkbox", name: "flawlessHandiworkRepurchase", class: "checkbox", checked: true}
+      %li
+        %label{for: "numAttempts"} Number of Crafting attempts (>0):
+        %input{type: "number", name: "numAttempts", min: "1", value: "101"}
     %input{type: "submit", value: "Roll", class: "button"}
 %div
   %strong Mean threshold successes per attempt:
