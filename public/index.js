@@ -4,7 +4,7 @@ function fetchResultsJS(theForm,event) {
   var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "stuntDice", "stuntSuccesses", "numAttempts"];
   var formBooleanArray = ["craftSpeciality", "fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase"];
 
-  var returnFloatArray = ["meanSuc","stdDevSuc"];
+  var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
   var hash = {}
