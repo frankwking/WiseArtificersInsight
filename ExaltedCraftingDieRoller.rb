@@ -3,6 +3,8 @@ class ECDRApplication
   def initialize
     #Crafting Rules
     @difficulty = 5
+    @terminus = 6
+    @targetThreshold = 50
 
     #Per Roll Options
     @fullExcellency = 1
@@ -30,18 +32,29 @@ class ECDRApplication
     @attemptArray = NumArray.new(@numAttempts)
   end
 
+  #Crafting Rules
   attr_accessor :difficulty
+  attr_accessor :terminus
+  attr_accessor :targetThreshold
+
+  #Per Roll Options
   attr_accessor :fullExcellency
   attr_accessor :willpowerSpend
   attr_accessor :stuntDice
   attr_accessor :stuntSuccesses
+
+  #Character Attributes
   attr_accessor :craftAbility
   attr_accessor :craftArtifact
   attr_accessor :craftAttribute
   attr_accessor :craftSpeciality
   attr_reader :initialPoolSize
+
+  #Charms Used
   attr_accessor :flawlessHandiworkMethod
   attr_accessor :flawlessHandiworkRepurchase
+
+  #Dataset
   attr_accessor :numAttempts
   attr_reader :meanSuc
   attr_reader :stdDevSuc
@@ -62,7 +75,7 @@ class ECDRApplication
     @meanSuc = @attemptArray.mean
     @stdDevSuc = @attemptArray.sigma
     @medianSuc = @attemptArray.median
-    @percentSuc = @attemptArray.percentGreaterOrEqualThreshold(50)
+    @percentSuc = @attemptArray.percentGreaterOrEqualThreshold(@targetThreshold)
     @meanSuc
   end
 
