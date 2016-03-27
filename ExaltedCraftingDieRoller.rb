@@ -26,6 +26,7 @@ class ECDRApplication
     @meanSuc = 0
     @stdDevSuc = 0
     @medianSuc = 0
+    @percentSuc = 0
     @attemptArray = NumArray.new(@numAttempts)
   end
 
@@ -45,13 +46,14 @@ class ECDRApplication
   attr_reader :meanSuc
   attr_reader :stdDevSuc
   attr_reader :medianSuc
+  attr_reader :percentSuc
 
   def resultsJson(params)
     params.each do |key, value|
       send (key+'=').to_sym, value.to_i
     end
     collectAttemptStatistics
-    {meanSuc: @meanSuc, medianSuc: @medianSuc, stdDevSuc: @stdDevSuc, initialPoolSize: @initialPoolSize}
+    {meanSuc: @meanSuc, medianSuc: @medianSuc, stdDevSuc: @stdDevSuc, percentSuc: @percentSuc, initialPoolSize: @initialPoolSize}
   end
 
   def collectAttemptStatistics
@@ -60,6 +62,7 @@ class ECDRApplication
     @meanSuc = @attemptArray.mean
     @stdDevSuc = @attemptArray.sigma
     @medianSuc = @attemptArray.median
+    @percentSuc = @attemptArray.percentGreaterOrEqualThreshold(50)
     @meanSuc
   end
 
