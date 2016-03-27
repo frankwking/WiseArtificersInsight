@@ -42,6 +42,12 @@
       %li
         %label{for: "numAttempts"} Number of Crafting attempts (>0):
         %input{type: "number", name: "numAttempts", min: "1", value: "101"}
+      %li
+        %%label{for: "terminus"} Crafting attempts Terminus (>1):
+        %input{type: "number", name: "terminus", min: "1", value: "6"}
+      %li
+        %%label{for: "targetThreshold"} Crafting attempts target threshold successes (>1):
+        %input{type: "number", name: "targetThreshold", min: "1", value: "50"}
     %input{type: "submit", value: "Roll", class: "button"}
 %div
   %strong Mean threshold successes per attempt:

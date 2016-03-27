@@ -1,7 +1,7 @@
 function fetchResultsJS(theForm,event) {
   event.preventDefault();
 
-  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "stuntDice", "stuntSuccesses", "numAttempts"];
+  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold"];
   var formBooleanArray = ["craftSpeciality", "fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase"];
 
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
