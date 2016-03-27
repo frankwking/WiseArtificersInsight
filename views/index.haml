@@ -83,21 +83,8 @@
   %div
     %span Initial size of crafting die pools:
     %span{id: "initialPoolSize"}= ECDRInstance.initialPoolSize.to_s
-%div.chart
+  %div.chart
 
 %script{type: "text/javascript", src: "zepto.js"}
 %script{type: "text/javascript", src: "index.js"}
 %script{type: "text/javascript", src: "//d3js.org/d3.v3.min.js"}
-%script{type: "text/javascript"}
-  var data = [4, 8, 15, 16, 23, 42];
-
-  var x = d3.scale.linear()
-  x.domain([0, d3.max(data)])
-  x.range([0, 420]);
-
-  var chart = d3.select(".chart");
-  var bar = chart.selectAll("div");
-  var barUpdate = bar.data(data);
-  var barEnter = barUpdate.enter().append("div");
-  barEnter.style("width", function(d) { return d * 10 + "px"; });
-  barEnter.text(function(d) { return d; });
