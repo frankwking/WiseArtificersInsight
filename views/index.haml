@@ -53,6 +53,9 @@
   %span Median of threshold successes per attempt:
   %span{id: "medianSuc"}= ECDRInstance.medianSuc.to_s
 %div
+  %span Percent of attempts with equal to or greater than minimum threshold:
+  %span{id: "percentSuc"}= ECDRInstance.percentSuc.round(2).to_s
+%div
   %span Initial size of crafting die pools:
   %span{id: "initialPoolSize"}= ECDRInstance.initialPoolSize.to_s
 

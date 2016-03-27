@@ -29,6 +29,7 @@ class NumArray < Array
 	def sigma
 		Math.sqrt(variance)
 	end
+
 	def percentGreaterOrEqualThreshold(threshold)
 		select {|num| num >= threshold}.length/length.to_f
 	end
