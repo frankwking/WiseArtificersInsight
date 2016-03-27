@@ -4,10 +4,9 @@ require 'tilt/haml'
 require_relative 'ExaltedCraftingDieRoller'
 require_relative "ArrayStatsUtil"
 
-ECDRInstance = ECDRApplication.new
-
 #Main Webpage Display
 get '/' do
+  ECDRInstance = ECDRApplication.new
   haml :index
 end
 
