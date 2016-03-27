@@ -81,7 +81,7 @@ class ECDRApplication
 
   def rollAttempt
     @initialPoolSize =  ([@craftAbility, @craftArtifact].min + @craftAttribute)*(1 + @fullExcellency) + @stuntDice + @craftSpeciality
-    poolArray = [0,0,0,0,0,0]
+    poolArray = Array.new(@terminus)
     poolArray.fill {|j| rollPool -  @difficulty + @willpowerSpend + @stuntSuccesses}
     totSuc = poolArray.inject(0,:+)
   end
