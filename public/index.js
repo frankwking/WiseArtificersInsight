@@ -54,7 +54,7 @@ function fetchResultsJS(theForm,event) {
         .attr("y", function(d) {return chartHeight - yScale(d[1]);})
         .attr("width", chartWidth / numBars - barPadding)
         .attr("height", function(d) {return yScale(d[1]);})
-        .attr("fill","teal");
+        .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";});
     }
   });
 }
