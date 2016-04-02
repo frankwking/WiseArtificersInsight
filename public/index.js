@@ -30,8 +30,9 @@ function fetchResultsJS(theForm,event) {
       $.each(data.hist, function(index, item) {dataset.push(item)});
       $.each(data.hist, function(index, item) {dataset2.push([parseInt(index), item])});
 
-      var svg = d3.select(".chart")
-        .append("svg")
+      d3.selectAll("svg > *").remove();
+
+      var svg = d3.select("svg")
         .attr("width", chartWidth)
         .attr("height", chartHeight);
 
