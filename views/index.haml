@@ -22,22 +22,22 @@
             %li
               %label{for: "craftAbility"} Relevant Craft:
               - 6.times do |i|
-                %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: true} #{i}
+                %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: i==5} #{i}
             %li
               %label{for: "craftArtifact"} Craft (Artifact):
               - 6.times do |i|
-                %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: true} #{i}
+                %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: i==5} #{i}
             %li
               %label{for: "craftSpeciality"} Craft Speciality:
               %input{type: "checkbox", name: "craftSpeciality", class: "checkbox", checked: true}
             %li
               %label{for: "craftAttribute"} Attribute:
               - 5.times do |i|
-                %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: true} #{i+1}
+                %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: i==4} #{i+1}
             %li
               %label{for: "essence"} Permanent Essence:
               - 5.times do |i|
-                %input{type: "radio", name: "essence", class: "radio", value: i+1, checked: i==1} #{i+1}
+                %input{type: "radio", name: "essence", class: "radio", value: i+1, checked: i==0} #{i+1}
         %li
           %strong Per Roll Options
           %ul
@@ -47,9 +47,8 @@
               %input{type: "radio", name: "stuntDice", class: "radio", value: 2, checked: true} 2
             %li
               %label{for: "stuntSuccesses"} Stunt Successes:
-              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 0, checked: true} 0
-              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 1, checked: false} 1
-              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 2, checked: false} 2
+              - 3.times do |i|
+                %input{type: "radio", name: "stuntSuccesses", class: "radio", value: i, checked: i==0} #{i}
             %li
               %label{for: "willpowerSpend"} Spending Willpower:
               %input{type: "checkbox", name: "willpowerSpend", class: "checkbox", checked: true}
