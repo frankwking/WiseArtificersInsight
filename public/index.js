@@ -22,12 +22,12 @@ function fetchResultsJS(theForm,event) {
     data: hash,
     dataType: 'json',
     success: function(data) {
-      $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); })
-      $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; })
+      $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); });
+      $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; });
       var hist = data.hist;
 
       var dataset = [];
-      $.each(hist, function(index, item) {dataset.push(item)})
+      $.each(hist, function(index, item) {dataset.push(item)});
 
       var svg = d3.select(".chart")
         .append("svg")
@@ -44,5 +44,5 @@ function fetchResultsJS(theForm,event) {
         .attr("height",function(d) {return d})
         .attr("fill","teal");
     }
-  })
+  });
 }
