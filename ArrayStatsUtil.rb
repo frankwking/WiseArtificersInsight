@@ -10,8 +10,12 @@ class NumArray < Array
 	  return size % 2 == 1 ? self[m_pos] : mean(self[m_pos-1..m_pos])
 	end
 
+	def histogram
+		inject(Hash.new(0)) { |h,n| h[n] += 1; h}
+	end
+
 	def mode
-		histogram = inject(Hash.new(0)) { |h,n| h[n] += 1; h}
+		hist = histogram
 		modes = nil
 		histogram.each_pair do |item, times|
 			modes << item if modes && times == modes[0] and find_all
