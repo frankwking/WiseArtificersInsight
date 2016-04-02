@@ -22,18 +22,18 @@ function fetchResultsJS(theForm,event) {
       $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; })
       var hist = data.hist;
 
+      var dataset = [];
+      $.each(hist, function(index, item) {dataset.push(item)})
+
+      d3.select(".chart").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class","bar")
+        .style("height", function(d) {
+          var barHeight = d;
+          return barHeight + "px"
+        });
     }
   })
-  var data = [4, 8, 15, 16, 23, 42];
-
-  var x = d3.scale.linear()
-      .domain([0, d3.max(data)])
-      .range([0, 420]);
-
-  d3.select(".chart")
-    .selectAll("div")
-      .data(data)
-    .enter().append("div")
-      .style("width", function(d) { return x(d) + "px"; })
-      .text(function(d) { return d; });
 }
