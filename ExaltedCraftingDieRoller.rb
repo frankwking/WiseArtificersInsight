@@ -25,7 +25,7 @@ class ECDRApplication
     @flawlessHandiworkRepurchase = 1
 
     #Dataset
-    @numAttempts = 101
+    @numAttempts = 5001
     @meanSuc = 0
     @stdDevSuc = 0
     @medianSuc = 0

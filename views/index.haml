@@ -1,95 +1,97 @@
-%link{rel: :stylesheet, type: "text/css", href: "/style.css"}
-%title= "Exalted Crafting"
-%h2= "Exalted Crafting Die Roller"
-%form{id: "craftForm", onsubmit: "return fetchResultsJS(this,event);", action: "#"}
+%head
+  %link{rel: :stylesheet, type: "text/css", href: "/style.css"}
+  %title= "Exalted Crafting"
+%body
+  %h2= "Exalted Crafting Die Roller"
+  %form{id: "craftForm", onsubmit: "return fetchResultsJS(this,event);", action: "#"}
+    %fieldset
+      %h3= "Attempt Settings"
+      %ul
+        %li
+          %strong Crafting Rules
+          %ul
+            %li
+              %label{for: "terminus"} Terminus (>1):
+              %input{type: "number", name: "terminus", min: "1", value: "6"}
+            %li
+              %%label{for: "targetThreshold"} Target Threshold Successes (>1):
+              %input{type: "number", name: "targetThreshold", min: "1", value: "50"}
+        %li
+          %strong Character Statistics
+          %ul
+            %li
+              %label{for: "craftAbility"} Relevant Craft:
+              - 6.times do |i|
+                %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: true} #{i}
+            %li
+              %label{for: "craftArtifact"} Craft (Artifact):
+              - 6.times do |i|
+                %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: true} #{i}
+            %li
+              %label{for: "craftSpeciality"} Craft Speciality:
+              %input{type: "checkbox", name: "craftSpeciality", class: "checkbox", checked: true}
+            %li
+              %label{for: "craftAttribute"} Attribute:
+              - 5.times do |i|
+                %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: true} #{i+1}
+            %li
+              %label{for: "essence"} Permanent Essence:
+              %input{type: "radio", name: "essence", class: "radio", value: 1, checked: true} #{1}
+              - 4.times do |i|
+                %input{type: "radio", name: "essence", class: "radio", value: i+2, checked: false} #{i+2}
+        %li
+          %strong Per Roll Options
+          %ul
+            %li
+              %label{for: "stuntDice"} Stunt Dice:
+              %input{type: "radio", name: "stuntDice", class: "radio", value: 0, checked: false} 0
+              %input{type: "radio", name: "stuntDice", class: "radio", value: 2, checked: true} 2
+            %li
+              %label{for: "stuntSuccesses"} Stunt Successes:
+              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 0, checked: true} 0
+              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 1, checked: false} 1
+              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 2, checked: false} 2
+            %li
+              %label{for: "willpowerSpend"} Spending Willpower:
+              %input{type: "checkbox", name: "willpowerSpend", class: "checkbox", checked: true}
+        %li
+          %strong Charms
+          %ul
+            %li
+              %label{for: "fullExcellency"} Full Craft Excellency:
+              %input{type: "checkbox", name: "fullExcellency", class: "checkbox", checked: true}
+            %li
+              %label{for: "flawlessHandiworkMethod"} Flawless Handiwork Method:
+              %input{type: "checkbox", name: "flawlessHandiworkMethod", class: "checkbox", checked: true}
+            %li
+              %label{for: "flawlessHandiworkRepurchase"} Flawless Handiwork Method Repurchase:
+              %input{type: "checkbox", name: "flawlessHandiworkRepurchase", class: "checkbox", checked: true}
+        %li
+          %strong Statistics Options
+          %ul
+            %li
+              %label{for: "numAttempts"} Number of Crafting Attempts (>0):
+              %input{type: "number", name: "numAttempts", min: "1", value: "5001"}
+      %input{type: "submit", value: "Roll", class: "button"}
   %fieldset
-    %h3= "Attempt Settings"
-    %ul
-      %li
-        %strong Crafting Rules
-        %ul
-          %li
-            %label{for: "terminus"} Terminus (>1):
-            %input{type: "number", name: "terminus", min: "1", value: "6"}
-          %li
-            %%label{for: "targetThreshold"} Target Threshold Successes (>1):
-            %input{type: "number", name: "targetThreshold", min: "1", value: "50"}
-      %li
-        %strong Character Statistics
-        %ul
-          %li
-            %label{for: "craftAbility"} Relevant Craft:
-            - 6.times do |i|
-              %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: true} #{i}
-          %li
-            %label{for: "craftArtifact"} Craft (Artifact):
-            - 6.times do |i|
-              %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: true} #{i}
-          %li
-            %label{for: "craftSpeciality"} Craft Speciality:
-            %input{type: "checkbox", name: "craftSpeciality", class: "checkbox", checked: true}
-          %li
-            %label{for: "craftAttribute"} Attribute:
-            - 5.times do |i|
-              %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: true} #{i+1}
-          %li
-            %label{for: "essence"} Permanent Essence:
-            %input{type: "radio", name: "essence", class: "radio", value: 1, checked: true} #{1}
-            - 4.times do |i|
-              %input{type: "radio", name: "essence", class: "radio", value: i+2, checked: false} #{i+2}
-      %li
-        %strong Per Roll Options
-        %ul
-          %li
-            %label{for: "stuntDice"} Stunt Dice:
-            %input{type: "radio", name: "stuntDice", class: "radio", value: 0, checked: false} 0
-            %input{type: "radio", name: "stuntDice", class: "radio", value: 2, checked: true} 2
-          %li
-            %label{for: "stuntSuccesses"} Stunt Successes:
-            %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 0, checked: true} 0
-            %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 1, checked: false} 1
-            %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 2, checked: false} 2
-          %li
-            %label{for: "willpowerSpend"} Spending Willpower:
-            %input{type: "checkbox", name: "willpowerSpend", class: "checkbox", checked: true}
-      %li
-        %strong Charms
-        %ul
-          %li
-            %label{for: "fullExcellency"} Full Craft Excellency:
-            %input{type: "checkbox", name: "fullExcellency", class: "checkbox", checked: true}
-          %li
-            %label{for: "flawlessHandiworkMethod"} Flawless Handiwork Method:
-            %input{type: "checkbox", name: "flawlessHandiworkMethod", class: "checkbox", checked: true}
-          %li
-            %label{for: "flawlessHandiworkRepurchase"} Flawless Handiwork Method Repurchase:
-            %input{type: "checkbox", name: "flawlessHandiworkRepurchase", class: "checkbox", checked: true}
-      %li
-        %strong Statistics Options
-        %ul
-          %li
-            %label{for: "numAttempts"} Number of Crafting Attempts (>0):
-            %input{type: "number", name: "numAttempts", min: "1", value: "101"}
-    %input{type: "submit", value: "Roll", class: "button"}
-%fieldset
-  %h3= "Attempt Statistics"
-  %div
-    %strong Mean threshold successes per attempt:
-    %strong{id: "meanSuc"}
-  %div
-    %span Standard Deviation of threshold successes per attempt:
-    %span{id: "stdDevSuc"}
-  %div
-    %span Median of threshold successes per attempt:
-    %span{id: "medianSuc"}
-  %div
-    %span Percent of attempts with equal to or greater than minimum threshold:
-    %span{id: "percentSuc"}
-  %div
-    %span Initial size of crafting die pools:
-    %span{id: "initialPoolSize"}
-  %div.chart
+    %h3= "Attempt Statistics"
+    %div
+      %strong Mean threshold successes per attempt:
+      %strong{id: "meanSuc"}
+    %div
+      %span Standard Deviation of threshold successes per attempt:
+      %span{id: "stdDevSuc"}
+    %div
+      %span Median of threshold successes per attempt:
+      %span{id: "medianSuc"}
+    %div
+      %span Percent of attempts with equal to or greater than minimum threshold:
+      %span{id: "percentSuc"}
+    %div
+      %span Initial size of crafting die pools:
+      %span{id: "initialPoolSize"}
+    %div.chart
 
-%script{type: "text/javascript", src: "zepto.js"}
-%script{type: "text/javascript", src: "index.js"}
-%script{type: "text/javascript", src: "//d3js.org/d3.v3.min.js"}
+  %script{type: "text/javascript", src: "zepto.js"}
+  %script{type: "text/javascript", src: "index.js"}
+  %script{type: "text/javascript", src: "//d3js.org/d3.v3.min.js"}
