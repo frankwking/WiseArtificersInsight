@@ -7,6 +7,10 @@ function fetchResultsJS(theForm,event) {
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
+  var chartWidth = 750;
+  var chartHeight = 250;
+  var barPadding = 1;
+
   var hash = {};
 
   $.each(formIntegerArray, function(index, item) { hash[item] = theForm.elements.namedItem(item).value; });
@@ -25,15 +29,20 @@ function fetchResultsJS(theForm,event) {
       var dataset = [];
       $.each(hist, function(index, item) {dataset.push(item)})
 
-      d3.select(".chart").selectAll("div")
+      var svg = d3.select(".chart")
+        .append("svg")
+        .attr("width", chartWidth)
+        .attr("height", chartHeight);
+
+      svg.selectAll("rect")
         .data(dataset)
         .enter()
-        .append("div")
-        .attr("class","bar")
-        .style("height", function(d) {
-          var barHeight = d;
-          return barHeight + "px"
-        });
+        .append("rect")
+        .attr("x", function(d,i){ return i * (chartWidth / dataset.length);})
+        .attr("y", function(d) {return chartHeight - d})
+        .attr("width", chartWidth / dataset.length - barPadding)
+        .attr("height",function(d) {return d})
+        .attr("fill","teal");
     }
   })
 }
