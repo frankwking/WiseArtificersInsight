@@ -31,6 +31,7 @@ class ECDRApplication
     @medianSuc = 0
     @percentSuc = 0
     @attemptArray = NumArray.new(@numAttempts)
+    @hist = Hash.new()
   end
 
   #Crafting Rules
@@ -62,13 +63,14 @@ class ECDRApplication
   attr_reader :stdDevSuc
   attr_reader :medianSuc
   attr_reader :percentSuc
+  attr_reader :hist
 
   def resultsJson(params)
     params.each do |key, value|
       send (key+'=').to_sym, value.to_i
     end
     collectAttemptStatistics
-    {meanSuc: @meanSuc, medianSuc: @medianSuc, stdDevSuc: @stdDevSuc, percentSuc: @percentSuc, initialPoolSize: @initialPoolSize}
+    {meanSuc: @meanSuc, medianSuc: @medianSuc, stdDevSuc: @stdDevSuc, percentSuc: @percentSuc, initialPoolSize: @initialPoolSize, hist: @hist}
   end
 
   def collectAttemptStatistics
@@ -77,6 +79,7 @@ class ECDRApplication
     @meanSuc = @attemptArray.mean
     @stdDevSuc = @attemptArray.sigma
     @medianSuc = @attemptArray.median
+    @hist = @attemptArray.histogram
     @percentSuc = @attemptArray.percentGreaterOrEqualThreshold(@targetThreshold)
     @meanSuc
   end

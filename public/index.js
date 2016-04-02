@@ -7,7 +7,8 @@ function fetchResultsJS(theForm,event) {
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
-  var hash = {}
+  var hash = {};
+
   $.each(formIntegerArray, function(index, item) { hash[item] = theForm.elements.namedItem(item).value; });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
 
@@ -19,6 +20,8 @@ function fetchResultsJS(theForm,event) {
     success: function(data) {
       $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); })
       $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; })
+      var hist = data.hist;
+
     }
   })
   var data = [4, 8, 15, 16, 23, 42];
