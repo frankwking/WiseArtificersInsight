@@ -47,9 +47,8 @@
               %input{type: "radio", name: "stuntDice", class: "radio", value: 2, checked: true} 2
             %li
               %label{for: "stuntSuccesses"} Stunt Successes:
-              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 0, checked: true} 0
-              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 1, checked: false} 1
-              %input{type: "radio", name: "stuntSuccesses", class: "radio", value: 2, checked: false} 2
+              - 3.times do |i|
+                %input{type: "radio", name: "stuntSuccesses", class: "radio", value: i, checked: i==0} #{i}
             %li
               %label{for: "willpowerSpend"} Spending Willpower:
               %input{type: "checkbox", name: "willpowerSpend", class: "checkbox", checked: true}
