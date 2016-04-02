@@ -18,6 +18,7 @@ class ECDRApplication
     @craftAttribute = 5
     @craftSpeciality = 1
     @initialPoolSize = ([@craftAbility, @craftArtifact].max + @craftAttribute)*(1+ @fullExcellency) + @stuntDice + @craftSpeciality
+    @essence = 1
 
     #Charms Used
     @flawlessHandiworkMethod = 1
@@ -49,6 +50,7 @@ class ECDRApplication
   attr_accessor :craftAttribute
   attr_accessor :craftSpeciality
   attr_reader :initialPoolSize
+  attr_accessor  :essence
 
   #Charms Used
   attr_accessor :flawlessHandiworkMethod
