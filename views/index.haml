@@ -36,9 +36,8 @@
                 %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: true} #{i+1}
             %li
               %label{for: "essence"} Permanent Essence:
-              %input{type: "radio", name: "essence", class: "radio", value: 1, checked: true} #{1}
-              - 4.times do |i|
-                %input{type: "radio", name: "essence", class: "radio", value: i+2, checked: false} #{i+2}
+              - 5.times do |i|
+                %input{type: "radio", name: "essence", class: "radio", value: i+1, checked: i==1} #{i+1}
         %li
           %strong Per Roll Options
           %ul
