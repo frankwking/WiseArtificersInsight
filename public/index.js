@@ -7,7 +7,7 @@ function fetchResultsJS(theForm,event) {
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
-  var margin = {top: 20, right: 20, bottom: 20, left: 40};
+  var margin = {top: 5, right: 20, bottom: 20, left: 40};
   var svgWidth = 750;
   var svgHeight = 250;
   var chartWidth = svgWidth - margin.left - margin.right;
@@ -48,7 +48,7 @@ function fetchResultsJS(theForm,event) {
 
       var yScale = d3.scale.linear()
         .domain([0, d3.max(dataset2, function(d) {return d[1];})])
-        .range([chartHeight, 0]);
+        .range([chartHeight, margin.top]);
 
       var xAxis = d3.svg.axis()
         .scale(xScale)
