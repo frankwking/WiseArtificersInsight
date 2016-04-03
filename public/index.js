@@ -29,9 +29,7 @@ function fetchResultsJS(theForm,event) {
       $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; });
 
       var dataset = [];
-      var dataset2 = [];
-      $.each(data.hist, function(index, item) {dataset.push(item)});
-      $.each(data.hist, function(index, item) {dataset2.push([parseInt(index), item])});
+      $.each(data.hist, function(index, item) {dataset.push([parseInt(index), item])});
 
       d3.selectAll("svg > *").remove();
 
@@ -39,15 +37,15 @@ function fetchResultsJS(theForm,event) {
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
-      var numBars = d3.max(dataset2, function(d) {return d[0];}) - d3.min(dataset2, function(d) {return d[0];});
+      var numBars = d3.max(dataset, function(d) {return d[0];}) - d3.min(dataset, function(d) {return d[0];});
       var barWidth = chartWidth / numBars - barPadding;
 
       var xScale = d3.scale.linear()
-        .domain([d3.min(dataset2, function(d) {return d[0];}), d3.max(dataset2, function(d) {return d[0];})])
+        .domain([d3.min(dataset, function(d) {return d[0];}), d3.max(dataset, function(d) {return d[0];})])
         .range([margin.left + barWidth/2, chartWidth - barWidth/2]);
 
       var yScale = d3.scale.linear()
-        .domain([0, d3.max(dataset2, function(d) {return d[1];})])
+        .domain([0, d3.max(dataset, function(d) {return d[1];})])
         .range([chartHeight, margin.top]);
 
       var xAxis = d3.svg.axis()
@@ -59,7 +57,7 @@ function fetchResultsJS(theForm,event) {
         .orient("left")
 
       svg.selectAll("rect")
-        .data(dataset2)
+        .data(dataset)
         .enter()
         .append("rect")
         .attr("x", function(d) {return xScale(d[0]) - barWidth/2;})
@@ -77,7 +75,6 @@ function fetchResultsJS(theForm,event) {
         .attr("class", "axis")
         .attr("transform", "translate(" + margin.left + ", 0)")
         .call(yAxis);
-
     }
   });
 }
