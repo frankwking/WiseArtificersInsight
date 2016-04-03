@@ -7,7 +7,7 @@ function fetchResultsJS(theForm,event) {
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
-  var margin = {top: 20, right: 20, bottom: 20, left: 20};
+  var margin = {top: 20, right: 20, bottom: 20, left: 40};
   var svgWidth = 750;
   var svgHeight = 250;
   var chartWidth = svgWidth - margin.left - margin.right;
@@ -39,34 +39,45 @@ function fetchResultsJS(theForm,event) {
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
+      var numBars = d3.max(dataset2, function(d) {return d[0];}) - d3.min(dataset2, function(d) {return d[0];});
+      var barWidth = chartWidth / numBars - barPadding;
+
       var xScale = d3.scale.linear()
         .domain([d3.min(dataset2, function(d) {return d[0];}), d3.max(dataset2, function(d) {return d[0];})])
-        .range([0, chartWidth]);
-
-      var numBars = d3.max(dataset2, function(d) {return d[0];}) - d3.min(dataset2, function(d) {return d[0];});
+        .range([margin.left + barWidth/2, chartWidth - barWidth/2]);
 
       var yScale = d3.scale.linear()
         .domain([0, d3.max(dataset2, function(d) {return d[1];})])
-        .range([0, chartHeight]);
+        .range([chartHeight, 0]);
 
       var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom")
 
+      var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left")
+
       svg.selectAll("rect")
         .data(dataset2)
         .enter()
         .append("rect")
-        .attr("x", function(d) {return xScale(d[0]);})
-        .attr("y", function(d) {return chartHeight - yScale(d[1]);})
-        .attr("width", chartWidth / numBars - barPadding)
-        .attr("height", function(d) {return yScale(d[1]);})
+        .attr("x", function(d) {return xScale(d[0]) - barWidth/2;})
+        .attr("y", function(d) {return  yScale(d[1]);})
+        .attr("width", barWidth)
+        .attr("height", function(d) {return chartHeight - yScale(d[1]);})
         .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";});
 
       svg.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(0," + (chartHeight) + ")")
-        .call(xAxis)
+        .call(xAxis);
+
+      svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + margin.left + ", 0)")
+        .call(yAxis);
+
     }
   });
 }
