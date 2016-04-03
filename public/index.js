@@ -9,7 +9,7 @@ function fetchResultsJS(theForm,event) {
 
   var margin = {top: 5, right: 20, bottom: 20, left: 40};
   var svgWidth = 750;
-  var svgHeight = 250;
+  var svgHeight = 550;
   var chartWidth = svgWidth - margin.left - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
   var barPadding = 1;
@@ -30,6 +30,12 @@ function fetchResultsJS(theForm,event) {
 
       var dataset = [];
       $.each(data.hist, function(index, item) {dataset.push([parseInt(index), item])});
+      var mean = data.meanSuc;
+      var stdDev = data.stdDevSuc;
+      var xMin = d3.min(dataset, function(d) {return d[0];});
+      var xMax = d3.max(dataset, function(d) {return d[0];});
+      var yMin = d3.min(dataset, function(d) {return d[1];});
+      var yMax = d3.max(dataset, function(d) {return d[1];});
 
       d3.selectAll("svg > *").remove();
 
@@ -37,15 +43,15 @@ function fetchResultsJS(theForm,event) {
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
-      var numBars = d3.max(dataset, function(d) {return d[0];}) - d3.min(dataset, function(d) {return d[0];});
+      var numBars = xMax - xMin;
       var barWidth = chartWidth / numBars - barPadding;
 
       var xScale = d3.scale.linear()
-        .domain([d3.min(dataset, function(d) {return d[0];}), d3.max(dataset, function(d) {return d[0];})])
+        .domain([xMin, xMax])
         .range([margin.left + barWidth/2, chartWidth - barWidth/2]);
 
       var yScale = d3.scale.linear()
-        .domain([0, d3.max(dataset, function(d) {return d[1];})])
+        .domain([0, yMax])
         .range([chartHeight, margin.top]);
 
       var xAxis = d3.svg.axis()
@@ -55,6 +61,36 @@ function fetchResultsJS(theForm,event) {
       var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("left")
+
+        console.log(yScale(0))
+        console.log(chartHeight - yScale(0))
+      svg.append("rect")
+        .attr("x", xScale(xMin) - barWidth/2)
+        .attr("y", yScale(yMax))
+        .attr("width", xScale(mean - stdDev) -xScale(xMin) + barWidth/2)
+        .attr("height", chartHeight - yScale(yMax))
+        .attr("fill", "dimgrey");
+
+      svg.append("rect")
+        .attr("x", xScale(mean - stdDev))
+        .attr("y", yScale(yMax))
+        .attr("width", xScale(mean) - xScale(mean - stdDev))
+        .attr("height", chartHeight - yScale(yMax))
+        .attr("fill", "darkgrey");
+
+      svg.append("rect")
+        .attr("x", xScale(mean))
+        .attr("y", yScale(yMax))
+        .attr("width", xScale(mean + stdDev) - xScale(mean))
+        .attr("height", chartHeight - yScale(yMax))
+        .attr("fill", "lightgrey");
+
+      svg.append("rect")
+        .attr("x", xScale(mean + stdDev))
+        .attr("y", yScale(yMax))
+        .attr("width", xScale(xMax) - xScale(mean + stdDev) + barWidth/2)
+        .attr("height", chartHeight - yScale(yMax))
+        .attr("fill", "gainsboro");
 
       svg.selectAll("rect")
         .data(dataset)
