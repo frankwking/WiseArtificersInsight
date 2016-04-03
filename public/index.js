@@ -7,8 +7,11 @@ function fetchResultsJS(theForm,event) {
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
-  var chartWidth = 750;
-  var chartHeight = 250;
+  var margin = {top: 20, right: 20, bottom: 20, left: 20};
+  var svgWidth = 750;
+  var svgHeight = 250;
+  var chartWidth = svgWidth - margin.left - margin.right;
+  var chartHeight = svgHeight - margin.top - margin.bottom;
   var barPadding = 1;
 
   var hash = {};
@@ -33,8 +36,8 @@ function fetchResultsJS(theForm,event) {
       d3.selectAll("svg > *").remove();
 
       var svg = d3.select("svg")
-        .attr("width", chartWidth)
-        .attr("height", chartHeight);
+        .attr("width", svgWidth)
+        .attr("height", svgHeight);
 
       var xScale = d3.scale.linear()
         .domain([d3.min(dataset2, function(d) {return d[0];}), d3.max(dataset2, function(d) {return d[0];})])
@@ -46,6 +49,10 @@ function fetchResultsJS(theForm,event) {
         .domain([0, d3.max(dataset2, function(d) {return d[1];})])
         .range([0, chartHeight]);
 
+      var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient("bottom")
+
       svg.selectAll("rect")
         .data(dataset2)
         .enter()
@@ -55,6 +62,11 @@ function fetchResultsJS(theForm,event) {
         .attr("width", chartWidth / numBars - barPadding)
         .attr("height", function(d) {return yScale(d[1]);})
         .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";});
+
+      svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(0," + (chartHeight) + ")")
+        .call(xAxis)
     }
   });
 }
