@@ -7,9 +7,9 @@ function fetchResultsJS(theForm,event) {
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
-  var margin = {top: 5, right: 20, bottom: 20, left: 40};
+  var margin = {top: 5, right: 20, bottom: 20, left: 30};
   var svgWidth = 750;
-  var svgHeight = 550;
+  var svgHeight = 250;
   var chartWidth = svgWidth - margin.left - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
   var barPadding = 1;
@@ -47,7 +47,7 @@ function fetchResultsJS(theForm,event) {
       var barWidth = chartWidth / numBars - barPadding;
 
       var xScale = d3.scale.linear()
-        .domain([xMin, xMax])
+        .domain([xMin-1, xMax+1])
         .range([margin.left + barWidth/2, chartWidth - barWidth/2]);
 
       var yScale = d3.scale.linear()
@@ -65,9 +65,9 @@ function fetchResultsJS(theForm,event) {
         console.log(yScale(0))
         console.log(chartHeight - yScale(0))
       svg.append("rect")
-        .attr("x", xScale(xMin) - barWidth/2)
+        .attr("x", xScale(xMin) - barWidth)
         .attr("y", yScale(yMax))
-        .attr("width", xScale(mean - stdDev) -xScale(xMin) + barWidth/2)
+        .attr("width", xScale(mean - stdDev) -xScale(xMin) + barWidth)
         .attr("height", chartHeight - yScale(yMax))
         .attr("fill", "dimgrey");
 
@@ -88,7 +88,7 @@ function fetchResultsJS(theForm,event) {
       svg.append("rect")
         .attr("x", xScale(mean + stdDev))
         .attr("y", yScale(yMax))
-        .attr("width", xScale(xMax) - xScale(mean + stdDev) + barWidth/2)
+        .attr("width", xScale(xMax) - xScale(mean + stdDev) + barWidth)
         .attr("height", chartHeight - yScale(yMax))
         .attr("fill", "gainsboro");
 
@@ -109,7 +109,7 @@ function fetchResultsJS(theForm,event) {
 
       svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(" + margin.left + ", 0)")
+        .attr("transform", "translate(" + (margin.left + barWidth/2) + ", 0)")
         .call(yAxis);
     }
   });
