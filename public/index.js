@@ -67,7 +67,7 @@ function fetchResultsJS(theForm,event) {
                         [xScale(mean), xScale(mean + stdDev) - xScale(mean), "lightgrey"],
                         [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "gainsboro"]];
 
-      // Render Background standar deviation shading
+      // Render Background standard deviation shading
       svg.selectAll("rect")
         .data(stdDevBoxes)
         .enter()
