@@ -62,36 +62,23 @@ function fetchResultsJS(theForm,event) {
         .scale(yScale)
         .orient("left")
 
-        console.log(yScale(0))
-        console.log(chartHeight - yScale(0))
-      svg.append("rect")
-        .attr("x", xScale(xMin) - barWidth)
-        .attr("y", yScale(yMax))
-        .attr("width", xScale(mean - stdDev) -xScale(xMin) + barWidth)
-        .attr("height", chartHeight - yScale(yMax))
-        .attr("fill", "dimgrey");
+      var stdDevBoxes = [[xScale(xMin) - barWidth, xScale(mean - stdDev) -xScale(xMin) + barWidth, "dimgrey"],
+                        [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "darkgrey"],
+                        [xScale(mean), xScale(mean + stdDev) - xScale(mean), "lightgrey"],
+                        [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "gainsboro"]];
 
-      svg.append("rect")
-        .attr("x", xScale(mean - stdDev))
+      // Render Background standar deviation shading
+      svg.selectAll("rect")
+        .data(stdDevBoxes)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) {return d[0]})
         .attr("y", yScale(yMax))
-        .attr("width", xScale(mean) - xScale(mean - stdDev))
+        .attr("width", function(d) {return d[1]})
         .attr("height", chartHeight - yScale(yMax))
-        .attr("fill", "darkgrey");
+        .attr("fill", function(d) {return d[2]});
 
-      svg.append("rect")
-        .attr("x", xScale(mean))
-        .attr("y", yScale(yMax))
-        .attr("width", xScale(mean + stdDev) - xScale(mean))
-        .attr("height", chartHeight - yScale(yMax))
-        .attr("fill", "lightgrey");
-
-      svg.append("rect")
-        .attr("x", xScale(mean + stdDev))
-        .attr("y", yScale(yMax))
-        .attr("width", xScale(xMax) - xScale(mean + stdDev) + barWidth)
-        .attr("height", chartHeight - yScale(yMax))
-        .attr("fill", "gainsboro");
-
+      // Render Histogram
       svg.selectAll("rect")
         .data(dataset)
         .enter()
@@ -102,11 +89,13 @@ function fetchResultsJS(theForm,event) {
         .attr("height", function(d) {return chartHeight - yScale(d[1]);})
         .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";});
 
+      // Render X Axis
       svg.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(0," + (chartHeight) + ")")
         .call(xAxis);
 
+      // Render Y Axis
       svg.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(" + (margin.left + barWidth/2) + ", 0)")
