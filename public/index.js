@@ -67,6 +67,10 @@ function fetchResultsJS(theForm,event) {
                         [xScale(mean), xScale(mean + stdDev) - xScale(mean), "lightgrey"],
                         [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "gainsboro"]];
 
+      var stdDevLine = [xScale(mean - stdDev), xScale(mean), xScale(mean + stdDev)];
+
+      var stdDevText = [[xScale(mean - stdDev), "-sigma"], [xScale(mean), "mu"], [xScale(mean + stdDev),"+sigma"]];
+
       // Render Background standard deviation shading
       svg.selectAll("rect")
         .data(stdDevBoxes)
@@ -78,6 +82,18 @@ function fetchResultsJS(theForm,event) {
         .attr("height", chartHeight - yScale(yMax))
         .attr("fill", function(d) {return d[2]});
 
+      //Render mean, +/- stdDev lines
+      svg.selectAll("line")
+        .data(stdDevLine)
+        .enter()
+        .append("line")
+        .attr("x1", function(d) {return d})
+        .attr("x2", function(d) {return d})
+        .attr("y1", yScale(yMax))
+        .attr("y2", yScale(yMin))
+        .attr("stroke-width", 2)
+        .attr("stroke", "black");
+
       // Render Histogram
       svg.selectAll("rect")
         .data(dataset)
@@ -88,6 +104,17 @@ function fetchResultsJS(theForm,event) {
         .attr("width", barWidth)
         .attr("height", function(d) {return chartHeight - yScale(d[1]);})
         .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";});
+
+      svg.selectAll("text")
+        .data(stdDevText)
+        .enter()
+        .append("text")
+        .text(function(d) {return d[1]})
+        .attr("x", function(d) {return d[0] + 5})
+        .attr("y", yScale(yMax-10))
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px")
+        .attr("fill", "black")
 
       // Render X Axis
       svg.append("g")
