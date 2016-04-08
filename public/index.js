@@ -111,7 +111,7 @@ function fetchResultsJS(theForm,event) {
 					var yPosition = 3*(chartHeight - yScale(yMax))/4;
 					//Update the tooltip position and value
 					d3.select("#tooltip")
-						.style("left", xPosition + "px")
+						.style("left", (xPosition + barWidth) + "px")
 						.style("top", yPosition + "px")
 						.select("#tooltipValue")
 						.text(d[1] + " trials with " + d[0] + " successes\n" + (d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(2) + "% of all trials");
