@@ -106,6 +106,7 @@ function fetchResultsJS(theForm,event) {
         .attr("height", function(d) {return chartHeight - yScale(d[1]);})
         .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";});
 
+      // Render line annotations
       svg.selectAll("text")
         .data(stdDevText)
         .enter()
