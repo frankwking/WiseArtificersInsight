@@ -104,7 +104,26 @@ function fetchResultsJS(theForm,event) {
         .attr("y", function(d) {return  yScale(d[1]);})
         .attr("width", barWidth)
         .attr("height", function(d) {return chartHeight - yScale(d[1]);})
-        .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";});
+        .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";})
+        .on("mouseover", function(d) {
+					//Get this bar's x/y values, then augment for the tooltip
+					var xPosition = xScale(d[0]);
+					var yPosition = 3*(chartHeight - yScale(yMax))/4;
+					//Update the tooltip position and value
+					d3.select("#tooltip")
+						.style("left", xPosition + "px")
+						.style("top", yPosition + "px")
+						.select("#tooltipValue")
+						.text(d[1] + " trials with " + d[0] + " successes\n" + (d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(2) + "% of all trials");
+					//Show the tooltip
+					d3.select("#tooltip").classed("hidden", false);
+			   })
+			   .on("mouseout", function() {
+
+					//Hide the tooltip
+					d3.select("#tooltip").classed("hidden", true);
+
+			   });
 
       // Render line annotations
       svg.selectAll("text")
