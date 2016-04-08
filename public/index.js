@@ -76,6 +76,7 @@ function fetchResultsJS(theForm,event) {
         .data(stdDevBoxes)
         .enter()
         .append("rect")
+        .attr("class", "noHighlight")
         .attr("x", function(d) {return d[0]})
         .attr("y", yScale(yMax))
         .attr("width", function(d) {return d[1]})

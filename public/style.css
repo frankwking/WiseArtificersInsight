@@ -9,3 +9,16 @@
   font-family: sans-serif;
   font-size: 11px;
 }
+
+rect:hover {
+  stroke: #0000ff;
+  stroke-width: 1;
+}
+
+rect.noHighlight {
+  pointer-events: none;
+}
+
+svg text {
+  pointer-events: none;
+}
