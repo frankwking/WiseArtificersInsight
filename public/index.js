@@ -69,7 +69,7 @@ function fetchResultsJS(theForm,event) {
 
       var stdDevLine = [xScale(mean - stdDev), xScale(mean), xScale(mean + stdDev)];
 
-      var stdDevText = [[xScale(mean - stdDev), "-sigma"], [xScale(mean), "mu"], [xScale(mean + stdDev),"+sigma"]];
+      var stdDevText = [[xScale(mean - stdDev), "-\u03C3"], [xScale(mean), "\u03BC"], [xScale(mean + stdDev),"+\u03C3"]];
 
       // Render Background standard deviation shading
       svg.selectAll("rect")
@@ -110,7 +110,7 @@ function fetchResultsJS(theForm,event) {
         .enter()
         .append("text")
         .text(function(d) {return d[1]})
-        .attr("x", function(d) {return d[0] + 5})
+        .attr("x", function(d) {return d[0] + 3})
         .attr("y", yScale(yMax-10))
         .attr("font-family", "sans-serif")
         .attr("font-size", "11px")
