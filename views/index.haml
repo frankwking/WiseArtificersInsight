@@ -89,7 +89,11 @@
     %div
       %span Initial size of crafting die pools:
       %span{id: "initialPoolSize"}
-    %svg{width: 750, height: 250}
+    %div
+      %div{id: "tooltip", class: "hidden"}
+        %p
+          %span{id: "tooltipValue"}
+      %svg{width: 750, height: 250}
 
   %script{type: "text/javascript", src: "zepto.js"}
   %script{type: "text/javascript", src: "index.js"}
