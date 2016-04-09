@@ -4,6 +4,16 @@ function arrayMean(ary) {
   return sum/ary.length;
 }
 
+function arrayMedian(ary) {
+  ary.sort(function(a, b){return a-b});
+  var half = Math.floor(ary.length/2);
+  if (ary.length % 2) {
+    return ary[half];
+  } else {
+    return (ary[half-1] + ary[half]) / 2.0;
+  }
+}
+
 function arrayHistogram(ary) {
   var hist = {};
   $.each(ary, function(index) {hist[ary[index]] = hist[ary[index]]+1 || 1});
@@ -19,4 +29,14 @@ function arrayVariance(ary) {
 
 function arrayStdDev(ary) {
   return Math.sqrt(arrayVariance(ary));
+}
+
+function arrayPercentAboveThreshold(ary, threshold) {
+  var count = 0;
+  $.each(ary, function(index) {
+    if (ary[index] > threshold) {
+      count += 1;
+    }
+  });
+  return count/ary.length;
 }

@@ -15,8 +15,10 @@ function fetchResultsJS(theForm,event) {
   var attemptArray = collectAttemptStatistics(hash);
   console.log(arrayHistogram(attemptArray));
   console.log(arrayMean(attemptArray));
+  console.log(arrayMedian(attemptArray));
   console.log(arrayVariance(attemptArray));
   console.log(arrayStdDev(attemptArray));
+  console.log(arrayPercentAboveThreshold(attemptArray,parseInt(hash.targetThreshold)));
 
   $.ajax({
     type: 'GET',
