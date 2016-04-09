@@ -4,6 +4,7 @@ function rollD10() {
 }
 
 // Roll a single craft pool of dice
+// Returns total number of successes or -1 if that total is below the difficulty of the roll
 function rollPool(initialPoolSize, hash) {
   var poolSize = initialPoolSize;
   var difficulty = 5;
@@ -49,4 +50,8 @@ function rollPool(initialPoolSize, hash) {
   if ((successes -  difficulty) < 0 && resultAry[1] > 0) { successes = -1; }
 
   return successes;
+}
+
+function rollAttemp(hash) {
+  return 0;//totSuc;
 }
