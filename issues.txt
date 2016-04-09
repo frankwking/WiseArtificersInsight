@@ -1,2 +1,2 @@
 Outstanding Issues
--add difficulty selection to the HAML interface
+-add option to craft non-artifacts with radio button on Artifact rating equivalent to CA6
