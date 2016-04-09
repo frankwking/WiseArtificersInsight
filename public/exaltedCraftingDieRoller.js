@@ -14,6 +14,37 @@ function rollPool(initialPoolSize) {
   while ( i < poolSize) {
     i += 1;
     var die = rollD10();
+    switch(die) {
+      case 1:
+        resultAry[die] += 1;
+        break;
+      case 2:
+        resultAry[die] += 1;
+        break;
+      case 3:
+        resultAry[die] += 1;
+        break;
+      case 4:
+        resultAry[die] += 1;
+        break;
+      case 5:
+        resultAry[die] += 1;
+        break;
+      case 6:
+        resultAry[die] += 1;
+        break;
+      case 7:
+        resultAry[die] += 1;
+        break;
+      case 8:
+        resultAry[die] += 1;
+        break;
+      case 9:
+        resultAry[die] += 1;
+        break;
+      case 0:
+        resultAry[die] += 1;
+        break;
+    }
   }
-
 }
