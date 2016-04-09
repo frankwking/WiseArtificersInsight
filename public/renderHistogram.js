@@ -15,8 +15,6 @@ function renderHistogram(data, hash, theForm) {
   var yMin = d3.min(dataset, function(d) {return d[1];});
   var yMax = d3.max(dataset, function(d) {return d[1];});
 
-  console.log(dataset);
-
   d3.selectAll("svg > *").remove();
 
   var svg = d3.select("svg")
