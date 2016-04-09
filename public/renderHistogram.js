@@ -52,18 +52,18 @@ function renderHistogram(data, hash, theForm) {
   var stdDevText = [[xScale(mean - stdDev), "-\u03C3"], [xScale(mean), "\u03BC"], [xScale(mean + stdDev),"+\u03C3"]];
 
   // Render Background standard deviation shading
-  // svg.selectAll("rect")
-  //   .data(stdDevBoxes)
-  //   .enter()
-  //   .append("rect")
-  //   .attr("class", "noHighlight")
-  //   .attr("x", function(d) {return d[0]})
-  //   .attr("y", yScale(yMax))
-  //   .attr("width", function(d) {return d[1]})
-  //   .attr("height", chartHeight - yScale(yMax))
-  //   .attr("fill", function(d) {return d[2]});
+  svg.selectAll("noHighlight")
+    .data(stdDevBoxes)
+    .enter()
+    .append("rect")
+    .attr("class", "noHighlight")
+    .attr("x", function(d) {return d[0]})
+    .attr("y", yScale(yMax))
+    .attr("width", function(d) {return d[1]})
+    .attr("height", chartHeight - yScale(yMax))
+    .attr("fill", function(d) {return d[2]});
 
-  //Render mean, +/- stdDev lines
+  // Render mean, +/- stdDev lines
   svg.selectAll("line")
     .data(stdDevLine)
     .enter()
@@ -76,10 +76,11 @@ function renderHistogram(data, hash, theForm) {
     .attr("stroke", "black");
 
   // Render Histogram
-  svg.selectAll("rect")
+  svg.selectAll("histogramBars")
     .data(dataset)
     .enter()
     .append("rect")
+    .attr("class", "histogramBars")
     .attr("x", function(d) {return xScale(d[0]) - barWidth/2;})
     .attr("y", function(d) {return  yScale(d[1]);})
     .attr("width", barWidth)
