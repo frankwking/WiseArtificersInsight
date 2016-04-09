@@ -6,6 +6,7 @@ function rollD10() {
 // Roll a single craft pool of dice
 function rollPool(initialPoolSize) {
   var poolSize = initialPoolSize;
+  var difficulty = 5;
 
   var i = 0;
   var successes = 0;
@@ -44,4 +45,11 @@ function rollPool(initialPoolSize) {
   }
   console.log(resultAry);
   console.log(successes);
+
+  console.log((successes -  difficulty));
+  console.log(resultAry[1]);
+  if ((successes -  difficulty) < 0 && resultAry[1] > 0) {
+    successes = -1;
+  }
+  return successes;
 }
