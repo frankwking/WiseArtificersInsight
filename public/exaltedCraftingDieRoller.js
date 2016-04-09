@@ -52,6 +52,12 @@ function rollPool(initialPoolSize, hash) {
   return successes;
 }
 
+// Roll a crafting attemp, consisting of terminus number of craft pools
+// Returns total threshold successes for the crafting attempt, -1 if botched
 function rollAttempt(hash) {
-  return 0;//totSuc;
+  // var initialPoolSize =  ([hash.craftAbility, hash.craftArtifact].min + hash.craftAttribute)*(1 + hash.fullExcellency) + hash.stuntDice + hash.craftSpeciality;
+  var initialPoolSize = (Math.min(parseInt(hash.craftAbility), parseInt(hash.craftArtifact)) + parseInt(hash.craftAttribute))*(1 + parseInt(hash.fullExcellency))
+                      + parseInt(hash.stuntDice) + parseInt(hash.craftSpeciality);
+  console.log(initialPoolSize);
+  return initialPoolSize;
 }

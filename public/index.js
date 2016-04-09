@@ -12,7 +12,7 @@ function fetchResultsJS(theForm,event) {
   $.each(formIntegerArray, function(index, item) { hash[item] = theForm.elements.namedItem(item).value; });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
 
-  console.log(rollPool(23, hash));
+  console.log(rollAttempt(hash));
 
   $.ajax({
     type: 'GET',
