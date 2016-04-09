@@ -5,8 +5,8 @@ function rollD10() {
 
 // Roll a single craft pool of dice
 // Returns total number of successes or -1 if that total is below the difficulty of the roll
-function rollPool(initialPoolSize, hash) {
-  var poolSize = initialPoolSize;
+function rollPool(hash) {
+  var poolSize = hash.initialPoolSize;
 
   var i = 0;
   var successes = 0;
@@ -54,12 +54,10 @@ function rollPool(initialPoolSize, hash) {
 // Roll a crafting attemp, consisting of terminus number of craft pools
 // Returns total threshold successes for the crafting attempt, -1 if botched
 function rollAttempt(hash) {
-  var initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact) + hash.craftAttribute)*(1 + hash.fullExcellency)
-                      + hash.stuntDice + hash.craftSpeciality;
   var poolArray = new Array(hash.terminus);
   var totSuc = 0;
   $.each(poolArray, function(index) {
-    poolArray[index] = rollPool(initialPoolSize, hash) - hash.difficulty + hash.willpowerSpend + hash.stuntSuccesses;
+    poolArray[index] = rollPool(hash) - hash.difficulty + hash.willpowerSpend + hash.stuntSuccesses;
     totSuc += poolArray[index];
   });
   $.each(poolArray, function(index) {
