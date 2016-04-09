@@ -12,7 +12,11 @@ function fetchResultsJS(theForm,event) {
   $.each(formIntegerArray, function(index, item) { hash[item] = theForm.elements.namedItem(item).value; });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
 
-  console.log(collectAttemptStatistics(hash));
+  var attemptArray = collectAttemptStatistics(hash);
+  console.log(arrayHistogram(attemptArray));
+  console.log(arrayMean(attemptArray));
+  console.log(arrayVariance(attemptArray));
+  console.log(arrayStdDev(attemptArray));
 
   $.ajax({
     type: 'GET',
