@@ -5,5 +5,9 @@ function rollPool(initialPoolSize) {
   var successes = 0;
   var resultAry = [0,0,0,0,0,0,0,0,0,0];
 
-  console.log("This is a test.");
+  while ( i < poolSize) {
+    console.log(i);
+    i += 1;
+  }
+
 }
