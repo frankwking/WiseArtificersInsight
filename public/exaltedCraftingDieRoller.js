@@ -65,6 +65,20 @@ function rollAttempt(hash) {
     poolArray[index] = rollPool(initialPoolSize, hash) - difficulty + parseInt(hash.willpowerSpend) + parseInt(hash.stuntSuccesses);
     totSuc += poolArray[index];
   });
-  console.log(totSuc);
+  $.each(poolArray, function(index) {
+    if (poolArray[index] < 0) {
+      totSuc = 0;
+    }
+  });
   return totSuc;
+}
+
+// Roll numAttempts different crafting attempts to gather statistics
+// Returns mean number of threshold successes per attempt
+function collectAttemptStatistics(hash) {
+  var attemptArray = new Array(parseInt(hash.numAttempts));
+  $.each(attemptArray, function(index) {
+    attemptArray[index] = rollAttempt(hash);
+  });
+  return attemptArray[0];
 }
