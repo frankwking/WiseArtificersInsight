@@ -7,7 +7,6 @@ function rollD10() {
 // Returns total number of successes or -1 if that total is below the difficulty of the roll
 function rollPool(initialPoolSize, hash) {
   var poolSize = initialPoolSize;
-  var difficulty = 5;
 
   var i = 0;
   var successes = 0;
@@ -47,7 +46,7 @@ function rollPool(initialPoolSize, hash) {
     }
   }
 
-  if ((successes -  difficulty) < 0 && resultAry[1] > 0) { successes = -1; }
+  if ((successes -  hash.difficulty) < 0 && resultAry[1] > 0) { successes = -1; }
 
   return successes;
 }
@@ -60,8 +59,7 @@ function rollAttempt(hash) {
   var poolArray = new Array(hash.terminus);
   var totSuc = 0;
   $.each(poolArray, function(index) {
-    difficulty = 5;
-    poolArray[index] = rollPool(initialPoolSize, hash) - difficulty + hash.willpowerSpend + hash.stuntSuccesses;
+    poolArray[index] = rollPool(initialPoolSize, hash) - hash.difficulty + hash.willpowerSpend + hash.stuntSuccesses;
     totSuc += poolArray[index];
   });
   $.each(poolArray, function(index) {
