@@ -35,16 +35,22 @@ function rollPool(initialPoolSize) {
         break;
       case 7:
         resultAry[die] += 1;
+        successes += 1;
         break;
       case 8:
         resultAry[die] += 1;
+        successes += 1;
         break;
       case 9:
         resultAry[die] += 1;
+        successes += 1;
         break;
       case 0:
         resultAry[die] += 1;
+        successes += 2;
         break;
     }
   }
+  console.log(resultAry);
+  console.log(successes);
 }
