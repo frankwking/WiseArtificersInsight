@@ -28,10 +28,7 @@ function rollPool(initialPoolSize, hash) {
       case 5:
         break;
       case 6:
-        if (hash.flawlessHandiworkRepurchase) {
-            console.log("FHR");
-            poolSize += 1;
-        }
+        if (hash.flawlessHandiworkRepurchase) { poolSize += 1; }
         break;
       case 7:
         successes += 1;
@@ -44,17 +41,12 @@ function rollPool(initialPoolSize, hash) {
         break;
       case 0:
         successes += 2;
-        if (hash.flawlessHandiworkMethod) {
-            console.log("FHM");
-            poolSize += 1;
-        }
+        if (hash.flawlessHandiworkMethod) { poolSize += 1; }
         break;
     }
   }
 
-  if ((successes -  difficulty) < 0 && resultAry[1] > 0) {
-    successes = -1;
-  }
-  
+  if ((successes -  difficulty) < 0 && resultAry[1] > 0) { successes = -1; }
+
   return successes;
 }
