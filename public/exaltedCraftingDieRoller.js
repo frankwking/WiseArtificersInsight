@@ -80,5 +80,5 @@ function collectAttemptStatistics(hash) {
   $.each(attemptArray, function(index) {
     attemptArray[index] = rollAttempt(hash);
   });
-  return arrayMean(attemptArray);
+  return attemptArray;
 }
