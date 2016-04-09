@@ -58,6 +58,13 @@ function rollAttempt(hash) {
   // var initialPoolSize =  ([hash.craftAbility, hash.craftArtifact].min + hash.craftAttribute)*(1 + hash.fullExcellency) + hash.stuntDice + hash.craftSpeciality;
   var initialPoolSize = (Math.min(parseInt(hash.craftAbility), parseInt(hash.craftArtifact)) + parseInt(hash.craftAttribute))*(1 + parseInt(hash.fullExcellency))
                       + parseInt(hash.stuntDice) + parseInt(hash.craftSpeciality);
-  console.log(initialPoolSize);
-  return initialPoolSize;
+  var poolArray = new Array(parseInt(hash.terminus));
+  var totSuc = 0;
+  $.each(poolArray, function(index) {
+    difficulty = 5;
+    poolArray[index] = rollPool(initialPoolSize, hash) - difficulty + parseInt(hash.willpowerSpend) + parseInt(hash.stuntSuccesses);
+    totSuc += poolArray[index];
+  });
+  console.log(totSuc);
+  return totSuc;
 }
