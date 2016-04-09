@@ -52,6 +52,6 @@ function rollPool(initialPoolSize, hash) {
   return successes;
 }
 
-function rollAttemp(hash) {
+function rollAttempt(hash) {
   return 0;//totSuc;
 }
