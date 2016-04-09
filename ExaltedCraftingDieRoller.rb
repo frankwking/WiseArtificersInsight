@@ -127,7 +127,7 @@ class ECDRApplication
     end
 
     if (successes -  @difficulty) < 0 && resultAry[1].to_i > 0
-      sucesses = -1
+      successes = -1
     end
     successes
   end
