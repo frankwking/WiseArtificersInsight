@@ -10,7 +10,7 @@
   font-size: 11px;
 }
 
-rect:hover {
+rect.histogramBars:hover {
   stroke: #0000ff;
   stroke-width: 1;
 }
