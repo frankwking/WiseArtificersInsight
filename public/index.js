@@ -13,22 +13,31 @@ function fetchResultsJS(theForm,event) {
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
 
   var attemptArray = collectAttemptStatistics(hash);
-  console.log(arrayHistogram(attemptArray));
-  console.log(arrayMean(attemptArray));
-  console.log(arrayMedian(attemptArray));
-  console.log(arrayVariance(attemptArray));
-  console.log(arrayStdDev(attemptArray));
-  console.log(arrayPercentAboveThreshold(attemptArray,parseInt(hash.targetThreshold)));
 
-  $.ajax({
-    type: 'GET',
-    url: '/exaltedcraftingdieroller',
-    data: hash,
-    dataType: 'json',
-    success: function(data) {
-      $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); });
-      $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; });
-      renderHistogram(data, hash, theForm);
-    }
-  });
+  var data = {};
+
+  data.meanSuc = arrayMean(attemptArray);
+  data.medianSuc = arrayMedian(attemptArray);
+  data.stdDevSuc = arrayStdDev(attemptArray);
+  data.percentSuc = arrayPercentAboveThreshold(attemptArray,parseInt(hash.targetThreshold));
+  data.initialPoolSize = (Math.min(parseInt(hash.craftAbility), parseInt(hash.craftArtifact)) + parseInt(hash.craftAttribute))*(1 + parseInt(hash.fullExcellency))
+                      + parseInt(hash.stuntDice) + parseInt(hash.craftSpeciality);
+  data.hist = arrayHistogram(attemptArray);
+
+  $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); });
+  $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; });
+
+  renderHistogram(data, hash, theForm);
+
+  // $.ajax({
+  //   type: 'GET',
+  //   url: '/exaltedcraftingdieroller',
+  //   data: hash,
+  //   dataType: 'json',
+  //   success: function(data) {
+  //     $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); });
+  //     $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; });
+  //     renderHistogram(data, hash, theForm);
+  //   }
+  // });
 }

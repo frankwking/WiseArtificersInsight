@@ -1,7 +1,7 @@
 function renderHistogram(data, hash, theForm) {
   var margin = {top: 5, right: 20, bottom: 20, left: 30};
   var svgWidth = 750;
-  var svgHeight = 250;
+  var svgHeight = 500;
   var chartWidth = svgWidth - margin.left - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
   var barPadding = 1;
@@ -14,6 +14,8 @@ function renderHistogram(data, hash, theForm) {
   var xMax = d3.max(dataset, function(d) {return d[0];});
   var yMin = d3.min(dataset, function(d) {return d[1];});
   var yMax = d3.max(dataset, function(d) {return d[1];});
+
+  console.log(dataset);
 
   d3.selectAll("svg > *").remove();
 
@@ -40,10 +42,12 @@ function renderHistogram(data, hash, theForm) {
     .scale(yScale)
     .orient("left");
 
-  var stdDevBoxes = [[xScale(xMin) - barWidth, xScale(mean - stdDev) -xScale(xMin) + barWidth, "dimgrey"],
-                    [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "darkgrey"],
-                    [xScale(mean), xScale(mean + stdDev) - xScale(mean), "lightgrey"],
-                    [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "gainsboro"]];
+  // var stdDevBoxes = [[xScale(xMin) - barWidth, xScale(mean - stdDev) -xScale(xMin) + barWidth, "dimgrey"],
+  //                   [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "darkgrey"],
+  //                   [xScale(mean), xScale(mean + stdDev) - xScale(mean), "lightgrey"],
+  //                   [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "gainsboro"]];
+
+  var stdDevBoxes = [[xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "gainsboro"]];
 
   var stdDevLine = [xScale(mean - stdDev), xScale(mean), xScale(mean + stdDev)];
 
@@ -108,9 +112,9 @@ function renderHistogram(data, hash, theForm) {
     .append("text")
     .text(function(d) {return d[1]})
     .attr("x", function(d) {return d[0] + 3})
-    .attr("y", yScale(yMax-10))
+    .attr("y", yScale(yMax-15))
     .attr("font-family", "sans-serif")
-    .attr("font-size", "11px")
+    .attr("font-size", "14px")
     .attr("fill", "black");
 
   // Render X Axis
