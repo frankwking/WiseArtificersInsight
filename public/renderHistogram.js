@@ -54,16 +54,16 @@ function renderHistogram(data, hash, theForm) {
   var stdDevText = [[xScale(mean - stdDev), "-\u03C3"], [xScale(mean), "\u03BC"], [xScale(mean + stdDev),"+\u03C3"]];
 
   // Render Background standard deviation shading
-  svg.selectAll("rect")
-    .data(stdDevBoxes)
-    .enter()
-    .append("rect")
-    .attr("class", "noHighlight")
-    .attr("x", function(d) {return d[0]})
-    .attr("y", yScale(yMax))
-    .attr("width", function(d) {return d[1]})
-    .attr("height", chartHeight - yScale(yMax))
-    .attr("fill", function(d) {return d[2]});
+  // svg.selectAll("rect")
+  //   .data(stdDevBoxes)
+  //   .enter()
+  //   .append("rect")
+  //   .attr("class", "noHighlight")
+  //   .attr("x", function(d) {return d[0]})
+  //   .attr("y", yScale(yMax))
+  //   .attr("width", function(d) {return d[1]})
+  //   .attr("height", chartHeight - yScale(yMax))
+  //   .attr("fill", function(d) {return d[2]});
 
   //Render mean, +/- stdDev lines
   svg.selectAll("line")
