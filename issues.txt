@@ -1,3 +1,2 @@
 Outstanding Issues
--give background rects and histogram rects different classes to solve rendering bug
 -add difficulty selection to the HAML interface
