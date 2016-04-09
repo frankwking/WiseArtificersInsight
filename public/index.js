@@ -12,7 +12,7 @@ function fetchResultsJS(theForm,event) {
   hash.difficulty = 5;
   $.each(formIntegerArray, function(index, item) { hash[item] = parseInt(theForm.elements.namedItem(item).value); });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
-  
+  hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact) + hash.craftAttribute)*(1 + hash.fullExcellency) + hash.stuntDice + hash.craftSpeciality;
   var attemptArray = collectAttemptStatistics(hash);
 
   var data = {};
