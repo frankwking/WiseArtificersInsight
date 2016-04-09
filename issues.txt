@@ -5,6 +5,5 @@ Outstanding Issues
 -fix the data hash that gets passed to the javascript die roller
   -add difficulty value
   -calculate and add initial pool size
-  -move casting to in to the hash creation instead of use
 -give background rects and histogram rects different classes to solve rendering bug
 -add difficulty selection to the HAML interface

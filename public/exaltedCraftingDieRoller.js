@@ -55,14 +55,13 @@ function rollPool(initialPoolSize, hash) {
 // Roll a crafting attemp, consisting of terminus number of craft pools
 // Returns total threshold successes for the crafting attempt, -1 if botched
 function rollAttempt(hash) {
-  // var initialPoolSize =  ([hash.craftAbility, hash.craftArtifact].min + hash.craftAttribute)*(1 + hash.fullExcellency) + hash.stuntDice + hash.craftSpeciality;
-  var initialPoolSize = (Math.min(parseInt(hash.craftAbility), parseInt(hash.craftArtifact)) + parseInt(hash.craftAttribute))*(1 + parseInt(hash.fullExcellency))
-                      + parseInt(hash.stuntDice) + parseInt(hash.craftSpeciality);
-  var poolArray = new Array(parseInt(hash.terminus));
+  var initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact) + hash.craftAttribute)*(1 + hash.fullExcellency)
+                      + hash.stuntDice + hash.craftSpeciality;
+  var poolArray = new Array(hash.terminus);
   var totSuc = 0;
   $.each(poolArray, function(index) {
     difficulty = 5;
-    poolArray[index] = rollPool(initialPoolSize, hash) - difficulty + parseInt(hash.willpowerSpend) + parseInt(hash.stuntSuccesses);
+    poolArray[index] = rollPool(initialPoolSize, hash) - difficulty + hash.willpowerSpend + hash.stuntSuccesses;
     totSuc += poolArray[index];
   });
   $.each(poolArray, function(index) {
@@ -76,7 +75,7 @@ function rollAttempt(hash) {
 // Roll numAttempts different crafting attempts to gather statistics
 // Returns mean number of threshold successes per attempt
 function collectAttemptStatistics(hash) {
-  var attemptArray = new Array(parseInt(hash.numAttempts));
+  var attemptArray = new Array(hash.numAttempts);
   $.each(attemptArray, function(index) {
     attemptArray[index] = rollAttempt(hash);
   });
