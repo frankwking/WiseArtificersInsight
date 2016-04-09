@@ -9,9 +9,10 @@ function fetchResultsJS(theForm,event) {
 
   var hash = {};
 
+  hash.difficulty = 5;
   $.each(formIntegerArray, function(index, item) { hash[item] = parseInt(theForm.elements.namedItem(item).value); });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
-
+  
   var attemptArray = collectAttemptStatistics(hash);
 
   var data = {};
