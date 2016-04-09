@@ -1,7 +1,7 @@
 function fetchResultsJS(theForm,event) {
   event.preventDefault();
 
-  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold", "essence"];
+  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold", "essence", "difficulty"];
   var formBooleanArray = ["craftSpeciality", "fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase"];
 
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
@@ -9,7 +9,6 @@ function fetchResultsJS(theForm,event) {
 
   var hash = {};
 
-  hash.difficulty = 5;
   $.each(formIntegerArray, function(index, item) { hash[item] = parseInt(theForm.elements.namedItem(item).value); });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
   hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact) + hash.craftAttribute)*(1 + hash.fullExcellency) + hash.stuntDice + hash.craftSpeciality;
