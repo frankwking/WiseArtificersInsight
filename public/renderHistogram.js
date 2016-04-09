@@ -34,11 +34,11 @@ function renderHistogram(data, hash, theForm) {
 
   var xAxis = d3.svg.axis()
     .scale(xScale)
-    .orient("bottom")
+    .orient("bottom");
 
   var yAxis = d3.svg.axis()
     .scale(yScale)
-    .orient("left")
+    .orient("left");
 
   var stdDevBoxes = [[xScale(xMin) - barWidth, xScale(mean - stdDev) -xScale(xMin) + barWidth, "dimgrey"],
                     [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "darkgrey"],
@@ -97,10 +97,8 @@ function renderHistogram(data, hash, theForm) {
       d3.select("#tooltip").classed("hidden", false);
      })
      .on("mouseout", function() {
-
       //Hide the tooltip
       d3.select("#tooltip").classed("hidden", true);
-
      });
 
   // Render line annotations
@@ -113,7 +111,7 @@ function renderHistogram(data, hash, theForm) {
     .attr("y", yScale(yMax-10))
     .attr("font-family", "sans-serif")
     .attr("font-size", "11px")
-    .attr("fill", "black")
+    .attr("fill", "black");
 
   // Render X Axis
   svg.append("g")
