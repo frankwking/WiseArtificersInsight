@@ -1,6 +1,3 @@
 Outstanding Issues
--Calculating Botches and Failures is incorrect
-  -Failures contribute negative successes instead of zero
-  -Botches are calculated from suc < difficulty && rolled a 1, should be suc < 1 && rolled a 1
 -give background rects and histogram rects different classes to solve rendering bug
 -add difficulty selection to the HAML interface

@@ -4,12 +4,12 @@ function rollD10() {
 }
 
 // Roll a single craft pool of dice
-// Returns total number of successes or -1 if that total is below the difficulty of the roll
+// Returns total number of threshold successes, 0 for failure, -1 for botch
 function rollPool(hash) {
   var poolSize = hash.initialPoolSize;
 
   var i = 0;
-  var successes = 0;
+  var successes = hash.willpowerSpend + hash.stuntSuccesses;
   var resultAry = [0,0,0,0,0,0,0,0,0,0];
 
   while ( i < poolSize) {
@@ -46,7 +46,15 @@ function rollPool(hash) {
     }
   }
 
-  if ((successes -  hash.difficulty) < 0 && resultAry[1] > 0) { successes = -1; }
+  if (successes  < hash.difficulty ) {
+    if (successes < 1 && resultAry[1] > 0) {
+      successes = -1;
+    } else {
+      successes = 0;
+    }
+  } else {
+    successes = successes - hash.difficulty;
+  }
 
   return successes;
 }
@@ -57,7 +65,7 @@ function rollAttempt(hash) {
   var poolArray = new Array(hash.terminus);
   var totSuc = 0;
   $.each(poolArray, function(index) {
-    poolArray[index] = rollPool(hash) - hash.difficulty + hash.willpowerSpend + hash.stuntSuccesses;
+    poolArray[index] = rollPool(hash);
     totSuc += poolArray[index];
   });
   $.each(poolArray, function(index) {
