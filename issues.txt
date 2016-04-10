@@ -1,2 +1,1 @@
 Outstanding Issues
--add option to craft non-artifacts with radio button on Artifact rating equivalent to CA6

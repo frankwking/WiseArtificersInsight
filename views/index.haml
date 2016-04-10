@@ -29,8 +29,8 @@
                 %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: i==5} #{i}
             %li
               %label{for: "craftArtifact"} Craft (Artifact):
-              - 6.times do |i|
-                %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: i==5} #{i}
+              - 7.times do |i|
+                %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: i==5}= i < 6 ? i : "Not crafting Artifact"
             %li
               %label{for: "craftSpeciality"} Craft Speciality:
               %input{type: "checkbox", name: "craftSpeciality", class: "checkbox", checked: true}
