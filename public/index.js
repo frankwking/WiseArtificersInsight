@@ -1,9 +1,10 @@
 function fetchResultsJS(theForm,event) {
   event.preventDefault();
 
-  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold", "essence", "difficulty"];
+  var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "intelligence", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold", "essence", "difficulty"];
   var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
-                          "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase"];
+                          "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
+                          "firstMovementOfTheDemiurge", "breachHealingMethod"];
 
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
@@ -12,7 +13,13 @@ function fetchResultsJS(theForm,event) {
 
   $.each(formIntegerArray, function(index, item) { hash[item] = parseInt(theForm.elements.namedItem(item).value); });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
-  hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact) + hash.craftAttribute)*(1 + hash.fullExcellency) + hash.stuntDice + hash.craftSpeciality;
+  hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact) + hash.craftAttribute)*(1 + hash.fullExcellency)
+                        + hash.stuntDice + hash.craftSpeciality
+                        + (hash.breachHealingMethod + hash.experientialConjuringOfTrueVoid)*hash.essence;
+  if(hash.ess >= 3 && hash.experientialConjuringOfTrueVoid) { hash.initialPoolSize += hash.intelligence; }
+  if(hash.breachHealingMethod) { hash.difficulty--; }
+  if(hash.difficulty < 0) { hash.difficulty = 0; }
+
   var attemptArray = collectAttemptStatistics(hash);
 
   var data = {};
