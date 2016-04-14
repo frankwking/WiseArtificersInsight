@@ -1,6 +1,6 @@
 // Return an interger between 0 and 9
 function rollD10() {
-  return Math.floor(Math.random() * (9));
+  return Math.floor(Math.random() * (10));
 }
 
 // Roll a single craft pool of dice
@@ -11,39 +11,20 @@ function rollPool(hash) {
   var i = 0;
   var successes = hash.willpowerSpend + hash.stuntSuccesses;
   var resultAry = [0,0,0,0,0,0,0,0,0,0];
+  var sucAry = [2,0,0,0,0,0,0,1,1,1];
+
+  if (hash.supremeMasterworkFocus) { sucAry[9] = 2; }
+  if (hash.supremeMasterworkFocusRepurchase) { sucAry[8] = sucAry[9] = 2; }
+  if (hash.supremeMasterworkFocus2ndRepurchase) { sucAry[7] = sucAry[8] = sucAry[9] = 2; }
 
   while ( i < poolSize) {
     i += 1;
     var die = rollD10();
     resultAry[die] += 1;
-    switch(die) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        break;
-      case 5:
-        break;
-      case 6:
-        if (hash.flawlessHandiworkRepurchase) { poolSize += 1; }
-        break;
-      case 7:
-        successes += 1;
-        break;
-      case 8:
-        successes += 1;
-        break;
-      case 9:
-        successes += 1;
-        break;
-      case 0:
-        successes += 2;
-        if (hash.flawlessHandiworkMethod) { poolSize += 1; }
-        break;
-    }
+    successes += sucAry[die];
+
+    if (hash.flawlessHandiworkRepurchase && die == 6) { poolSize += 1; }
+    if (hash.flawlessHandiworkMethod && die == 0) { poolSize += 1; }
   }
 
   if (successes  < hash.difficulty ) {
