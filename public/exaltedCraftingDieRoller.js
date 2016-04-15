@@ -22,6 +22,11 @@ function rollPool(hash) {
   var HMUsucCount = 0;
   var HMUCurrentDieFromDTI = 0;
 
+  if (hash.SHTperAttempt) {
+    hash.SHTperAttempt = 0;
+    successes += 10;
+  }
+
   while ( i < poolSize) {
     i += 1;
     var die = rollD10();
@@ -50,7 +55,7 @@ function rollPool(hash) {
       HMUsucCount++;
       if (HMUsucCount == 3) { poolSize += 3}
     }
-    
+
     HMUCurrentDieFromDTI = 0;
     if (hash.divineInspirationTechnique && successes % 3 == 0 && successes != 0) {
       poolSize += 1;
@@ -95,6 +100,7 @@ function rollAttempt(hash) {
 function collectAttemptStatistics(hash) {
   var attemptArray = new Array(hash.numAttempts);
   $.each(attemptArray, function(index) {
+    hash.SHTperAttempt = hash.sunHeartTenacity;
     attemptArray[index] = rollAttempt(hash);
   });
   return attemptArray;
