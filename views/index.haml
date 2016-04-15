@@ -35,9 +35,13 @@
               %label{for: "craftSpeciality"} Craft Speciality:
               %input{type: "checkbox", name: "craftSpeciality", class: "checkbox", checked: true}
             %li
-              %label{for: "craftAttribute"} Attribute:
+              %label{for: "craftAttribute"} Attribute used in Craft roll:
               - 5.times do |i|
                 %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: i==4} #{i+1}
+            %li
+              %label{for: "intelligence"} Intelligence (Value used in some Charms):
+              - 5.times do |i|
+                %input{type: "radio", name: "intelligence", class: "radio", value: i+1, checked: i==4} #{i+1}
             %li
               %label{for: "essence"} Permanent Essence:
               - 5.times do |i|
