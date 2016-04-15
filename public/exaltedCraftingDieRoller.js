@@ -1,6 +1,6 @@
 // Return an interger between 0 and 9
 function rollD10() {
-  return Math.floor(Math.random() * (9));
+  return Math.floor(Math.random() * (10));
 }
 
 // Roll a single craft pool of dice
@@ -12,6 +12,10 @@ function rollPool(hash) {
   var successes = hash.willpowerSpend + hash.stuntSuccesses;
   var resultAry = [0,0,0,0,0,0,0,0,0,0];
   var sucAry = [2,0,0,0,0,0,0,1,1,1];
+
+  if (hash.supremeMasterworkFocus) {
+    sucAry[9] = 2;
+   }
 
   while ( i < poolSize) {
     i += 1;
@@ -32,7 +36,7 @@ function rollPool(hash) {
   } else {
     successes = successes - hash.difficulty;
   }
-
+  
   return successes;
 }
 
