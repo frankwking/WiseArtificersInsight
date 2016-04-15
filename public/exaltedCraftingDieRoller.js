@@ -13,9 +13,9 @@ function rollPool(hash) {
   var resultAry = [0,0,0,0,0,0,0,0,0,0];
   var sucAry = [2,0,0,0,0,0,0,1,1,1];
 
-  if (hash.supremeMasterworkFocus) {
-    sucAry[9] = 2;
-   }
+  if (hash.supremeMasterworkFocus) { sucAry[9] = 2; }
+  if (hash.supremeMasterworkFocusRepurchase) { sucAry[8] = sucAry[9] = 2; }
+  if (hash.supremeMasterworkFocus2ndRepurchase) { sucAry[7] = sucAry[8] = sucAry[9] = 2; }
 
   while ( i < poolSize) {
     i += 1;
@@ -36,7 +36,7 @@ function rollPool(hash) {
   } else {
     successes = successes - hash.difficulty;
   }
-  
+
   return successes;
 }
 
