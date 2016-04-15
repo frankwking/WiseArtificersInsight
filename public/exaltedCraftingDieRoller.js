@@ -18,30 +18,9 @@ function rollPool(hash) {
     var die = rollD10();
     resultAry[die] += 1;
     successes += sucAry[die];
-    switch(die) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        break;
-      case 5:
-        break;
-      case 6:
-        if (hash.flawlessHandiworkRepurchase && die == 6) { poolSize += 1; }
-        break;
-      case 7:
-        break;
-      case 8:
-        break;
-      case 9:
-        break;
-      case 0:
-        if (hash.flawlessHandiworkMethod && die == 0) { poolSize += 1; }
-        break;
-    }
+
+    if (hash.flawlessHandiworkRepurchase && die == 6) { poolSize += 1; }
+    if (hash.flawlessHandiworkMethod && die == 0) { poolSize += 1; }
   }
 
   if (successes  < hash.difficulty ) {
