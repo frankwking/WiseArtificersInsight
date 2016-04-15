@@ -17,6 +17,12 @@ function rollPool(hash) {
   if (hash.supremeMasterworkFocusRepurchase) { sucAry[8] = sucAry[9] = 2; }
   if (hash.supremeMasterworkFocus2ndRepurchase) { sucAry[7] = sucAry[8] = sucAry[9] = 2; }
 
+  if(hash.experientialConjuringOfTrueVoid) {
+    successes += 1;
+    poolSize += hash.essence;
+    if(hash.essence >= 3) { poolSize += hash.intelligence; }
+  }
+
   while ( i < poolSize) {
     i += 1;
     var die = rollD10();
