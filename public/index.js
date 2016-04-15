@@ -3,7 +3,8 @@ function fetchResultsJS(theForm,event) {
 
   var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "intelligence", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold", "essence", "difficulty"];
   var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
-                          "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus"];
+                          "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
+                          "firstMovementOfTheDemiurge"];
 
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
