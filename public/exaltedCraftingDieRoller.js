@@ -33,6 +33,8 @@ function rollPool(hash) {
     if (hash.flawlessHandiworkMethod && die == 0) { poolSize += 1; }
   }
 
+  if (hash.unbrokenImageFocus) { successes += hash.essence + resultAry[7] + resultAry[8] + resultAry[9] + resultAry[0]*2; }
+
   if (successes  < hash.difficulty ) {
     if (successes < 1 && resultAry[1] > 0) {
       successes = -1;
