@@ -11,11 +11,13 @@ function rollPool(hash) {
   var i = 0;
   var successes = hash.willpowerSpend + hash.stuntSuccesses;
   var resultAry = [0,0,0,0,0,0,0,0,0,0];
+  var sucAry = [2,0,0,0,0,0,0,1,1,1];
 
   while ( i < poolSize) {
     i += 1;
     var die = rollD10();
     resultAry[die] += 1;
+    successes += sucAry[die];
     switch(die) {
       case 1:
         break;
@@ -28,20 +30,16 @@ function rollPool(hash) {
       case 5:
         break;
       case 6:
-        if (hash.flawlessHandiworkRepurchase) { poolSize += 1; }
+        if (hash.flawlessHandiworkRepurchase && die == 6) { poolSize += 1; }
         break;
       case 7:
-        successes += 1;
         break;
       case 8:
-        successes += 1;
         break;
       case 9:
-        successes += 1;
         break;
       case 0:
-        successes += 2;
-        if (hash.flawlessHandiworkMethod) { poolSize += 1; }
+        if (hash.flawlessHandiworkMethod && die == 0) { poolSize += 1; }
         break;
     }
   }
