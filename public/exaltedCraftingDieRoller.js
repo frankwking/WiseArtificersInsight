@@ -19,6 +19,13 @@ function rollPool(hash) {
 
   var FMDNeedToConvert = 0;
   var FMDAvailFailures = 0;
+  var HMUsucCount = 0;
+  var HMUCurrentDieFromDTI = 0;
+
+  if (hash.SHTperAttempt) {
+    hash.SHTperAttempt = 0;
+    successes += 10;
+  }
 
   while ( i < poolSize) {
     i += 1;
@@ -43,7 +50,17 @@ function rollPool(hash) {
 
     if (hash.flawlessHandiworkRepurchase && die == 6) { poolSize += 1; }
     if (hash.flawlessHandiworkMethod && die == 0) { poolSize += 1; }
-    if (hash.divineInspirationTechnique && successes % 3 == 0 && successes != 0) { poolSize += 1; }
+
+    if (hash.holisticMiracleUnderstanding && HMUCurrentDieFromDTI && HMUsucCount < 3 && (die == 0 || die >= 7)) {
+      HMUsucCount++;
+      if (HMUsucCount == 3) { poolSize += 3}
+    }
+
+    HMUCurrentDieFromDTI = 0;
+    if (hash.divineInspirationTechnique && successes % 3 == 0 && successes != 0) {
+      poolSize += 1;
+      HMUCurrentDieFromDTI = 1;
+    }
   }
 
   if (hash.unbrokenImageFocus) { successes += hash.essence + resultAry[7] + resultAry[8] + resultAry[9] + resultAry[0]*2; }
@@ -83,6 +100,7 @@ function rollAttempt(hash) {
 function collectAttemptStatistics(hash) {
   var attemptArray = new Array(hash.numAttempts);
   $.each(attemptArray, function(index) {
+    hash.SHTperAttempt = hash.sunHeartTenacity;
     attemptArray[index] = rollAttempt(hash);
   });
   return attemptArray;
