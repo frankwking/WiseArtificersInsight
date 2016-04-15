@@ -23,11 +23,28 @@ function rollPool(hash) {
     if(hash.essence >= 3) { poolSize += hash.intelligence; }
   }
 
+  var FMDNeedToConvert = 0;
+  var FMDAvailFailures = 0;
   while ( i < poolSize) {
     i += 1;
     var die = rollD10();
     resultAry[die] += 1;
     successes += sucAry[die];
+
+    if (hash.firstMovementOfTheDemiurge && hash.experientialConjuringOfTrueVoid) {
+      if(1 >= die && die <= 6) { FMDAvailFailures += 1; }
+      else if (resultAry[die] % 3 == 0) { FMDNeedToConvert +=1; }
+      while (FMDNeedToConvert > 0 && FMDAvailFailures > 0) {
+        var toConvert = 0;
+        for (var j = 6; j >= 1; j--) { if (resultAry[j] > 0) { toConvert = j; } }
+        resultAry[toConvert]--;
+        resultAry[10]++;
+        if (hash.flawlessHandiworkMethod) { poolSize += 1; }
+        if (resultAry[10] % 3 == 0) { FMDNeedToConvert +=1; }
+        FMDNeedToConvert--;
+        FMDAvailFailures--;
+      }
+    }
 
     if (hash.flawlessHandiworkRepurchase && die == 6) { poolSize += 1; }
     if (hash.flawlessHandiworkMethod && die == 0) { poolSize += 1; }
