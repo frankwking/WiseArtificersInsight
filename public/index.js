@@ -6,7 +6,7 @@ function fetchResultsJS(theForm,event) {
   var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
                           "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
                           "firstMovementOfTheDemiurge", "breachHealingMethod", "divineInspirationTechnique", "mindExpandingMeditation", "realizingTheFormSupernal",
-                          "holisticMiracleUnderstanding", "horizonUnveilingInsight"];
+                          "holisticMiracleUnderstanding", "horizonUnveilingInsight", "sunHeartTenacity"];
 
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
