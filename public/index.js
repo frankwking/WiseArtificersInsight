@@ -5,7 +5,7 @@ function fetchResultsJS(theForm,event) {
                           "essence", "difficulty", "inspirationRenewingVision"];
   var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
                           "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
-                          "firstMovementOfTheDemiurge", "breachHealingMethod", "divineInspirationTechnique", "mindExpandingMeditation"];
+                          "firstMovementOfTheDemiurge", "breachHealingMethod", "divineInspirationTechnique", "mindExpandingMeditation", "realizingTheFormSupernal"];
 
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
@@ -19,8 +19,12 @@ function fetchResultsJS(theForm,event) {
                         + (hash.breachHealingMethod + hash.experientialConjuringOfTrueVoid)*hash.essence;
   if(hash.ess >= 3 && hash.experientialConjuringOfTrueVoid) { hash.initialPoolSize += hash.intelligence; }
   if(hash.breachHealingMethod) { hash.difficulty--; }
-  if(hash.difficulty < 0) { hash.difficulty = 0; }
+
   hash.terminus += hash.inspirationRenewingVision;
+
+
+
+  if(hash.difficulty < 0) { hash.difficulty = 0; }
 
   var attemptArray = collectAttemptStatistics(hash);
 
