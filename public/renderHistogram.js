@@ -4,7 +4,7 @@ function renderHistogram(data, hash, theForm) {
   var svgHeight = 500;
   var chartWidth = svgWidth - margin.left - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
-  var barPadding = 1;
+  var barPadding = 2;
 
   var dataset = [];
   $.each(data.hist, function(index, item) {dataset.push([parseInt(index), item])});
