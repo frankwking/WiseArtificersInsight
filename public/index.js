@@ -20,6 +20,7 @@ function fetchResultsJS(theForm,event) {
   if(hash.ess >= 3 && hash.experientialConjuringOfTrueVoid) { hash.initialPoolSize += hash.intelligence; }
   if(hash.breachHealingMethod) { hash.difficulty--; }
   if(hash.difficulty < 0) { hash.difficulty = 0; }
+  hash.terminus += hash.inspirationRenewingVision;
 
   var attemptArray = collectAttemptStatistics(hash);
 
