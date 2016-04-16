@@ -14,7 +14,7 @@ function fetchResultsJS(theForm,event) {
 
   $.each(formIntegerArray, function(index, item) { hash[item] = parseInt(theForm.elements.namedItem(item).value); });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
-  hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact) + hash.craftAttribute)*(1 + hash.fullExcellency)
+  hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact)*(1 + hash.mindExpandingMeditation) + hash.craftAttribute)*(1 + hash.fullExcellency)
                         + hash.stuntDice + hash.craftSpeciality
                         + (hash.breachHealingMethod + hash.experientialConjuringOfTrueVoid)*hash.essence;
   if(hash.ess >= 3 && hash.experientialConjuringOfTrueVoid) { hash.initialPoolSize += hash.intelligence; }
@@ -30,8 +30,7 @@ function fetchResultsJS(theForm,event) {
   data.medianSuc = arrayMedian(attemptArray);
   data.stdDevSuc = arrayStdDev(attemptArray);
   data.percentSuc = arrayPercentAboveThreshold(attemptArray,parseInt(hash.targetThreshold));
-  data.initialPoolSize = (Math.min(parseInt(hash.craftAbility), parseInt(hash.craftArtifact)) + parseInt(hash.craftAttribute))*(1 + parseInt(hash.fullExcellency))
-                      + parseInt(hash.stuntDice) + parseInt(hash.craftSpeciality);
+  data.initialPoolSize = hash.initialPoolSize;
   data.hist = arrayHistogram(attemptArray);
 
   $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); });
