@@ -2,7 +2,7 @@ function fetchResultsJS(theForm,event) {
   event.preventDefault();
 
   var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "intelligence", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold",
-                          "essence", "difficulty", "inspirationRenewingVision", "wordsAsWorkshopMethod"];
+                          "essence", "difficulty", "inspirationRenewingVision", "wordsAsWorkshopMethod", "unwindingGyreMeditation"];
   var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
                           "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
                           "firstMovementOfTheDemiurge", "breachHealingMethod", "divineInspirationTechnique", "mindExpandingMeditation", "realizingTheFormSupernal",
@@ -24,7 +24,8 @@ function fetchResultsJS(theForm,event) {
 
   if(hash.horizonUnveilingInsight) { hash.terminus = 7; }
 
-  hash.terminus += hash.inspirationRenewingVision;
+  hash.terminus += hash.inspirationRenewingVision + hash.unwindingGyreMeditation;
+  if(hash.unwindingGyreMeditation) { hash.targetThreshold -= (5 + hash.unwindingGyreMeditation*hash.essence); }
 
   if(hash.realizingTheFormSupernal) {
     hash.difficulty--;
