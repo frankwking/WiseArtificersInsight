@@ -50,6 +50,7 @@ function rollPool(hash) {
       HMUsucCount++;
       if (HMUsucCount == 3) { poolSize += 3}
     }
+    
     HMUCurrentDieFromDTI = 0;
     if (hash.divineInspirationTechnique && successes % 3 == 0 && successes != 0) {
       poolSize += 1;

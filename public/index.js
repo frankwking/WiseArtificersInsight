@@ -6,7 +6,7 @@ function fetchResultsJS(theForm,event) {
   var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
                           "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
                           "firstMovementOfTheDemiurge", "breachHealingMethod", "divineInspirationTechnique", "mindExpandingMeditation", "realizingTheFormSupernal",
-                          "holisticMiracleUnderstanding"];
+                          "holisticMiracleUnderstanding", "horizonUnveilingInsight"];
 
   var returnFloatArray = ["meanSuc", "stdDevSuc", "percentSuc"];
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
@@ -21,6 +21,8 @@ function fetchResultsJS(theForm,event) {
                         + hash.wordsAsWorkshopMethod;
   if(hash.ess >= 3 && hash.experientialConjuringOfTrueVoid) { hash.initialPoolSize += hash.intelligence; }
   if(hash.breachHealingMethod) { hash.difficulty--; }
+
+  if(hash.horizonUnveilingInsight) { hash.terminus = 7; }
 
   hash.terminus += hash.inspirationRenewingVision;
 
