@@ -44,16 +44,4 @@ function fetchResultsJS(theForm,event) {
   $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; });
 
   renderHistogram(data, hash, theForm);
-
-  // $.ajax({
-  //   type: 'GET',
-  //   url: '/exaltedcraftingdieroller',
-  //   data: hash,
-  //   dataType: 'json',
-  //   success: function(data) {
-  //     $.each(returnFloatArray, function(index, item) { document.getElementById(item).innerHTML = data[item].toFixed(2); });
-  //     $.each(returnIntegerArray, function(index, item) { document.getElementById(item).innerHTML = data[item]; });
-  //     renderHistogram(data, hash, theForm);
-  //   }
-  // });
 }
