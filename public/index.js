@@ -22,7 +22,10 @@ function fetchResultsJS(theForm,event) {
 
   hash.terminus += hash.inspirationRenewingVision;
 
-
+  if(hash.realizingTheFormSupernal) {
+    hash.difficulty--;
+    hash.targetThreshold -= hash.intelligence*hash.essence;
+  }
 
   if(hash.difficulty < 0) { hash.difficulty = 0; }
 
