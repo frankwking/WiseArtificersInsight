@@ -23,7 +23,7 @@ svg text {
   pointer-events: none;
 }
 
-#tooltip {
+#tooltipOld {
 	position: relative;
 	width: 200px;
 	/*height: auto;
@@ -40,11 +40,11 @@ svg text {
 	pointer-events: none;
 }
 
-#tooltip.hidden {
+#tooltipOld.hidden {
 	display: none;
 }
 
-#tooltip p {
+#tooltipOld p {
 	margin: 0;
 	font-family: sans-serif;
 	font-size: 16px;
