@@ -1,7 +1,7 @@
 function renderHistogram(data, hash, theForm) {
-  var margin = {top: 5, right: 20, bottom: 20, left: 30};
-  var svgWidth = 750;
-  var svgHeight = 500;
+  var margin = {top: 5, right: 25, bottom: 20, left: 55};
+  var svgWidth = 830;
+  var svgHeight = 525;
   var chartWidth = svgWidth - margin.left - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
   var barPadding = 2;
