@@ -1,7 +1,7 @@
 function renderHistogram(data, hash, theForm) {
-  var margin = {top: 5, right: 20, bottom: 20, left: 30};
-  var svgWidth = 750;
-  var svgHeight = 500;
+  var margin = {top: 5, right: 25, bottom: 20, left: 55};
+  var svgWidth = 830;
+  var svgHeight = 375;
   var chartWidth = svgWidth - margin.left - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
   var barPadding = 2;
@@ -23,6 +23,7 @@ function renderHistogram(data, hash, theForm) {
 
   var numBars = xMax - xMin;
   var barWidth = chartWidth / numBars - barPadding;
+  if(barWidth < 1) {barWidth = 1}
 
   var xScale = d3.scale.linear()
     .domain([xMin-1, xMax+1])
@@ -69,7 +70,7 @@ function renderHistogram(data, hash, theForm) {
     .attr("x1", function(d) {return d})
     .attr("x2", function(d) {return d})
     .attr("y1", yScale(yMax))
-    .attr("y2", yScale(yMin))
+    .attr("y2", chartHeight)
     .attr("stroke-width", 2)
     .attr("stroke", "black");
 
@@ -86,20 +87,40 @@ function renderHistogram(data, hash, theForm) {
     .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";})
     .on("mouseover", function(d) {
       //Get this bar's x/y values, then augment for the tooltip
+      var tooltipText = [d[1] + " trials with " + d[0] + " successes",
+                        (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% of all trials"];
       var xPosition = xScale(d[0]);
       var yPosition = 3*(chartHeight - yScale(yMax))/4;
-      //Update the tooltip position and value
-      d3.select("#tooltip")
-        .style("left", (xPosition + barWidth) + "px")
-        .style("top", yPosition + "px")
-        .select("#tooltipValue")
-        .text(d[1] + " trials with " + d[0] + " successes\n" + (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% of all trials");
-      //Show the tooltip
-      d3.select("#tooltip").classed("hidden", false);
+      var tooltipWidth = 2+5*Math.max(tooltipText[0].length,tooltipText[1].length);
+      var tooltipHeight = 26;
+      //render tooltip background box-shadow
+      svg.append("rect")
+        .attr("id", "tooltipRect")
+        .attr("class", "noHighlight")
+        .attr("x", xPosition - tooltipWidth/2)
+        .attr("y", yPosition - 11)
+        .attr("width", tooltipWidth)
+        .attr("height", tooltipHeight)
+        .attr("fill", "white");
+      //render tooltip text
+      var tblock = svg.append("text")
+        .attr("id", "tooltipText")
+        .attr("text-anchor", "middle")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px");
+      tblock.append("tspan")
+        .attr("x", (xPosition))
+        .attr("y", yPosition)
+        .text(tooltipText[0]);
+      tblock.append("tspan")
+        .attr("x", (xPosition))
+        .attr("y", yPosition + 11)
+        .text(tooltipText[1]);
      })
      .on("mouseout", function() {
       //Hide the tooltip
-      d3.select("#tooltip").classed("hidden", true);
+      d3.select("#tooltipText").remove();
+      d3.select("#tooltipRect").remove();
      });
 
   // Render line annotations
@@ -109,7 +130,7 @@ function renderHistogram(data, hash, theForm) {
     .append("text")
     .text(function(d) {return d[1]})
     .attr("x", function(d) {return d[0] + 3})
-    .attr("y", yScale(yMax-15))
+    .attr("y", yScale(7*yMax/8))
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
     .attr("fill", "black");

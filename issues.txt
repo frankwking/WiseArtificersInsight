@@ -1,1 +1,3 @@
 Outstanding Issues
+Divine Inspiration Technique produces a non-rendingering histogram
+Horizon Unveiling Instight produces a non-rendering histogram
