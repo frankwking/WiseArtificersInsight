@@ -13,6 +13,7 @@
 rect.histogramBars:hover {
   stroke: #0000ff;
   stroke-width: 1;
+  fill: #0000ff;
 }
 
 rect.noHighlight {
