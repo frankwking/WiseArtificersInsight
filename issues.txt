@@ -3,6 +3,5 @@ Outstanding Issues
 -get google analytics account and attach that javascript to the webpage, requires a webpage url to be known
 -clone repo to github
 -put link to github on webpage
--add short about to webpage
 -find someone who has safari and test that out
 -host on John's Digital ocean to testing!
