@@ -1,7 +1,7 @@
 function renderHistogram(data, hash, theForm) {
-  var margin = {top: 5, right: 25, bottom: 20, left: 55};
+  var margin = {top: 5, right: 25, bottom: 35, left: 55};
   var svgWidth = 830;
-  var svgHeight = 375;
+  var svgHeight = 380;
   var chartWidth = svgWidth - margin.left - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
   var barPadding = 2;
@@ -141,9 +141,23 @@ function renderHistogram(data, hash, theForm) {
     .attr("transform", "translate(0," + (chartHeight) + ")")
     .call(xAxis);
 
+  // Render X Axis Label
+  svg.append("text")
+    .attr("transform", "translate(" + (chartWidth / 2) + " ," + (chartHeight + margin.bottom) + ")")
+    .style("text-anchor", "middle")
+    .text("Total Threshold Successes per Crafting Attempt");
+
   // Render Y Axis
   svg.append("g")
     .attr("class", "axis")
     .attr("transform", "translate(" + (margin.left + barWidth/2) + ", 0)")
     .call(yAxis);
+
+  svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 )
+        .attr("x", 0-chartHeight/2 )
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Number of Crafting Attempts");
 }
