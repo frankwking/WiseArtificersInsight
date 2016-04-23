@@ -37,7 +37,7 @@ fieldset {
   position: relative;
   font-family: Tahoma, Geneva, sans-serif;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 18px;
   color: #000000;
   text-decoration: none;
   border-radius: 10px;
@@ -76,4 +76,8 @@ input[type="submit"] {
 input.submit:hover {
   background: #fff;
   color: #09C;
+}
+
+form {
+  margin: auto
 }
