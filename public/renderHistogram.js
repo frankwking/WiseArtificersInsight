@@ -144,6 +144,9 @@ function renderHistogram(data, hash, theForm) {
   // Render X Axis Label
   svg.append("text")
     .attr("transform", "translate(" + (chartWidth / 2) + " ," + (chartHeight + margin.bottom) + ")")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "14px")
+    .attr("fill", "black");
     .style("text-anchor", "middle")
     .text("Total Threshold Successes per Crafting Attempt");
 
@@ -154,10 +157,13 @@ function renderHistogram(data, hash, theForm) {
     .call(yAxis);
 
   svg.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 )
-        .attr("x", 0-chartHeight/2 )
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text("Number of Crafting Attempts");
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 )
+    .attr("x", 0-chartHeight/2 )
+    .attr("dy", "1em")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "14px")
+    .attr("fill", "black");
+    .style("text-anchor", "middle")
+    .text("Number of Crafting Attempts");
 }
