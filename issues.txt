@@ -1,6 +1,5 @@
 Outstanding Issues
 -add license.md and readme.md to repo
--annotate graph with red-failure yellow-success
 -graphing and css shading not working in internet explorer 11
 -get google analytics account and attach that javascript to the webpage
 -clone repo to github
