@@ -128,12 +128,34 @@ function renderHistogram(data, hash, theForm) {
     .data(stdDevText)
     .enter()
     .append("text")
-    .text(function(d) {return d[1]})
     .attr("x", function(d) {return d[0] + 3})
+    .attr("y", yScale(7*yMax/8))
+    .attr("dy", "1em")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "14px")
+    .attr("fill", "black")
+    .text(function(d) {return d[1]});
+
+  // Render bar color annotations
+  svg.append("text")
+    .attr("x", xScale(xMin))
     .attr("y", yScale(7*yMax/8))
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
-    .attr("fill", "black");
+    .attr("font-weight", "bold")
+    .attr("fill", "red")
+    .style("text-anchor", "start")
+    .text("Red Bars: Failed Attempts");
+  svg.append("text")
+    .attr("x", xScale(xMin))
+    .attr("y", yScale(7*yMax/8))
+    .attr("dy", "-1em")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "14px")
+    .attr("font-weight", "bold")
+    .attr("fill", "Gold")
+    .style("text-anchor", "start")
+    .text("Gold Bars: Successful Attempts");
 
   // Render X Axis
   svg.append("g")
@@ -146,7 +168,7 @@ function renderHistogram(data, hash, theForm) {
     .attr("transform", "translate(" + (chartWidth / 2) + " ," + (chartHeight + margin.bottom) + ")")
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
-    .attr("fill", "black");
+    .attr("fill", "black")
     .style("text-anchor", "middle")
     .text("Total Threshold Successes per Crafting Attempt");
 
@@ -156,6 +178,7 @@ function renderHistogram(data, hash, theForm) {
     .attr("transform", "translate(" + (margin.left + barWidth/2) + ", 0)")
     .call(yAxis);
 
+  // Render Y Axis Label
   svg.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 0 )
@@ -163,7 +186,7 @@ function renderHistogram(data, hash, theForm) {
     .attr("dy", "1em")
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
-    .attr("fill", "black");
+    .attr("fill", "black")
     .style("text-anchor", "middle")
     .text("Number of Crafting Attempts");
 }
