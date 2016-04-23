@@ -1,5 +1,5 @@
 Outstanding Issues
--graphing and css shading not working in internet explorer 11
+-graphing and css shading not working in internet explorer 11, has an error about input tags not being closed
 -get google analytics account and attach that javascript to the webpage, requires a webpage url to be known
 -clone repo to github
 -put link to github on webpage
