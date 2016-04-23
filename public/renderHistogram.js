@@ -41,10 +41,10 @@ function renderHistogram(data, hash, theForm) {
     .scale(yScale)
     .orient("left");
 
-  var stdDevBoxes = [[xScale(xMin) - barWidth, xScale(mean - stdDev) -xScale(xMin) + barWidth, "dimgrey"],
-                    [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "darkgrey"],
-                    [xScale(mean), xScale(mean + stdDev) - xScale(mean), "lightgrey"],
-                    [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "gainsboro"]];
+  var stdDevBoxes = [[xScale(xMin) - barWidth, xScale(mean - stdDev) -xScale(xMin) + barWidth, "#737373"],
+                    [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "#999999"],
+                    [xScale(mean), xScale(mean + stdDev) - xScale(mean), "#CCCCCC"],
+                    [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "#f2f2f2"]];
 
   var stdDevLine = [xScale(mean - stdDev), xScale(mean), xScale(mean + stdDev)];
 
