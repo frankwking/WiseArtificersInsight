@@ -3,11 +3,33 @@
   %link{rel: :stylesheet, type: "text/css", href: "/style.css"}
   %title= "Wise Artificer's Insight"
 %body
-  %h2= "Wise Artificer's Insight - Solar Exalted Crafting Statistics"
+  %h2= "Wise Artificer's Insight"
+  %h3= "Solar Exalted Crafting Statistics"
   %form{id: "craftForm", onsubmit: "return fetchResultsJS(this,event);", action: "#"}
     %fieldset
+      %h3= "Purpose"
+      %ul
+        %li
+          %span To give a player thinking about making an Artifact or other complex project in Exalted 3rd Edition some insight into their likelihood of success.
+          %span A master craftsman of any discipline has awareness of their skill and should be able to judge what projects are trivial for them or beyond their skills.
+          %span This can be difficult because of the complex die manipulation powers available to Solars in Exalted 3rd Edition.
+          %span This program provides the crafter insight into their level of skill by providing a basic statistical analysis on a large number of crafting attempts.
       %h3= "How to use"
-      %span test tests testsetset aseksdflas dfalsdkfjalsd fasdlfkjsd fkasjdf laksdfja sldkfja sldkfjasdlfkajsd lfkasjdf askdfjalskdfja sdkfj asdlkfjsadflkajsdflkasjd falskdjfalskdfjasdflas dfalsdkfjalsd fasdlfkjsd fkasjdf laksdfja sldkfja sldkfjasdlfkajsd lfkasjdf askdfjalskdfja sdkfj asdlkfjsadflkajsdflkasjd fdflas dfalsdkfjalsd fasdlfkjsd fkasjdf laksdfja sldkfja sldkfjasdlfkajsd lfkasjdf askdfjalskdfja sdkfj asdlkfjsadflkajsdflkasjd fdflas dfalsdkfjalsd fasdlfkjsd fkasjdf laksdfja sldkfja sldkfjasdlfkajsd lfkasjdf askdfjalskdfja sdkfj asdlkfjsadflkajsdflkasjd fdflas dfalsdkfjalsd fasdlfkjsd fkasjdf laksdfja sldkfja sldkfjasdlfkajsd lfkasjdf askdfjalskdfja sdkfj asdlkfjsadflkajsdflkasjd f
+      %ul
+        %li
+          %strong Enter the statistics of the character doing the Crafting project and the Charms they want to use in the Attempt Settings form.
+          %strong All Charms are applied uniformly to all Crafting rolls as part of a project attempt.
+          %strong You can also change the number of crafting attempts to try in the Statistics Options section at the bottom.
+          %strong More attempts will produce more accurate statistics but will take longer to run.
+        %li
+          %span To use this program you will need a copy of the Exalted 3rd Edition core rulebook, to reference the Crafting rules on pages 238-244 and Solar Craft Charms on pages 289-299.
+          %span This program is not a replacement for those rules and does not explain how Crafting works, detail what any of the Charms do, calculate costs, or enforce legal choices for Charms use.
+          %span It will let you use Charms above your permanent Essence score or enable Charms without prerequisite or dependent Charms.
+        %li
+          %span In order to calculate statistics this program requires a minimum of 10 crafting attempts rolled at a time.
+          %span Therefore it cannot be used for a final in-game crafting attempt.
+          %span This is intentional, as you may wish to use different Charms on different rolls, which this program cannot do.
+          %span Plus, you should probably make those rolls somewhere where your GM can see.
     %fieldset
       %h3= "Attempt Settings"
       %ul
