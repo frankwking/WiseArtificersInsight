@@ -55,6 +55,7 @@ function renderHistogram(data, hash, theForm) {
     .data(stdDevBoxes)
     .enter()
     .append("rect")
+    .attr("id", "stdDevShading")
     .attr("class", "noHighlight")
     .attr("x", function(d) {return d[0]})
     .attr("y", yScale(yMax))
@@ -67,6 +68,7 @@ function renderHistogram(data, hash, theForm) {
     .data(stdDevLine)
     .enter()
     .append("line")
+    .attr("id", "stdDevLines")
     .attr("x1", function(d) {return d})
     .attr("x2", function(d) {return d})
     .attr("y1", yScale(yMax))
@@ -86,14 +88,12 @@ function renderHistogram(data, hash, theForm) {
     .attr("height", function(d) {return chartHeight - yScale(d[1]);})
     .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";})
     .on("mouseover", function(d) {
-      //Get this bar's x/y values, then augment for the tooltip
       var tooltipText = [d[1] + " trials with " + d[0] + " successes",
                         (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% of all trials"];
       var xPosition = xScale(d[0]);
       var yPosition = 3*(chartHeight - yScale(yMax))/4;
       var tooltipWidth = 2+5*Math.max(tooltipText[0].length,tooltipText[1].length);
       var tooltipHeight = 26;
-      //render tooltip background box-shadow
       svg.append("rect")
         .attr("id", "tooltipRect")
         .attr("class", "noHighlight")
