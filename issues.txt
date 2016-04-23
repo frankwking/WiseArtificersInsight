@@ -1,6 +1,5 @@
 Outstanding Issues
 -add license.md and readme.md to repo
--add an explanation of how to use at the top of the webpage
 -add axes labes to the graph
 -annotate graph with red-failure yellow-success
 -graphing and css shading not working in internet explorer 11
