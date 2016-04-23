@@ -1,7 +1,7 @@
 Outstanding Issues
 -add license.md and readme.md to repo
 -graphing and css shading not working in internet explorer 11
--get google analytics account and attach that javascript to the webpage
+-get google analytics account and attach that javascript to the webpage, requires a webpage url to be known
 -clone repo to github
 -put link to github on webpage
 -add short about to webpage
