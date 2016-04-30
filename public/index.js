@@ -12,7 +12,7 @@ function fetchResultsJS(theForm,event) {
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
   var hash = {};
-
+  
   $.each(formIntegerArray, function(index, item) { hash[item] = parseInt(theForm.elements.namedItem(item).value); });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
   hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact)*(1 + hash.mindExpandingMeditation) + hash.craftAttribute)*(1 + hash.fullExcellency)
