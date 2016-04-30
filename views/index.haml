@@ -32,9 +32,9 @@
         %span Therefore it cannot be used for a final in-game crafting attempt.
         %span This is intentional, as you may wish to use different Charms on different rolls, which this program cannot do.
         %span Plus, you should probably make those rolls somewhere where your Storyteller can see.
-  %form{id: "craftForm", onsubmit: "return fetchResultsJS(this,event);", action: "#"}
-    %fieldset
-      %h3= "Attempt Settings"
+  %fieldset
+    %h3= "Attempt Settings"
+    %form{id: "craftForm", onsubmit: "return fetchResultsJS(this,event);", action: "#"}
       %ul
         %li
           %strong Crafting Rules
