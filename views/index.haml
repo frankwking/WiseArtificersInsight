@@ -41,135 +41,165 @@
           %ul
             %li
               %label{for: "difficulty"} Difficulty (>=1):
-              %input{type: "number", name: "difficulty", min: "1", value: "5"}
+              %input{type: "number", class: "raligner", name: "difficulty", min: "1", value: "5"}
             %li
               %label{for: "terminus"} Terminus (>=1):
-              %input{type: "number", name: "terminus", min: "1", value: "6"}
+              %input{type: "number", class: "raligner", name: "terminus", min: "1", value: "6"}
             %li
               %%label{for: "targetThreshold"} Target Threshold Successes (>=1):
-              %input{type: "number", name: "targetThreshold", min: "1", value: "50"}
+              %input{type: "number", class: "raligner", name: "targetThreshold", min: "1", value: "50"}
         %li
           %strong Character Statistics
           %ul
             %li
               %label{for: "craftAbility"} Relevant Craft:
-              - 6.times do |i|
-                %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: i==5} #{i}
+              %p{class: "raligner"}
+                - 6.times do |i|
+                  %input{type: "radio", name: "craftAbility", class: "radio", value: i, checked: i==5} #{i}
             %li
               %label{for: "craftArtifact"} Craft (Artifact):
-              - 7.times do |i|
-                %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: i==5}= i < 6 ? i : "Not crafting Artifact"
+              %p{class: "raligner"}
+                - 7.times do |i|
+                  %input{type: "radio", name: "craftArtifact", class: "radio", value: i, checked: i==5}= i < 6 ? i : "Not crafting Artifact"
             %li
               %label{for: "craftSpeciality"} Craft Speciality:
-              %input{type: "checkbox", name: "craftSpeciality", class: "checkbox", checked: true}
+              %p{class: "raligner"}
+                %input{type: "checkbox", name: "craftSpeciality", class: "checkbox", checked: true}
             %li
               %label{for: "craftAttribute"} Attribute used in Craft roll:
-              - 5.times do |i|
-                %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: i==4} #{i+1}
+              %p{class: "raligner"}
+                - 5.times do |i|
+                  %input{type: "radio", name: "craftAttribute", class: "radio", value: i+1, checked: i==4} #{i+1}
             %li
               %label{for: "intelligence"} Intelligence (Value used in some Charms):
-              - 5.times do |i|
-                %input{type: "radio", name: "intelligence", class: "radio", value: i+1, checked: i==4} #{i+1}
+              %p{class: "raligner"}
+                - 5.times do |i|
+                  %input{type: "radio", name: "intelligence", class: "radio", value: i+1, checked: i==4} #{i+1}
             %li
               %label{for: "essence"} Permanent Essence:
-              - 5.times do |i|
-                %input{type: "radio", name: "essence", class: "radio", value: i+1, checked: i==0} #{i+1}
+              %p{class: "raligner"}
+                - 5.times do |i|
+                  %input{type: "radio", name: "essence", class: "radio", value: i+1, checked: i==0} #{i+1}
         %li
           %strong Per Roll Options
           %ul
             %li
               %label{for: "stuntDice"} Stunt Dice:
-              %input{type: "radio", name: "stuntDice", class: "radio", value: 0, checked: false} 0
-              %input{type: "radio", name: "stuntDice", class: "radio", value: 2, checked: true} 2
+              %p{class: "raligner"}
+                %input{type: "radio", name: "stuntDice", class: "radio", value: 0, checked: false} 0
+                %input{type: "radio", name: "stuntDice", class: "radio", value: 2, checked: true} 2
             %li
               %label{for: "stuntSuccesses"} Stunt Successes:
-              - 3.times do |i|
-                %input{type: "radio", name: "stuntSuccesses", class: "radio", value: i, checked: i==0} #{i}
+              %p{class: "raligner"}
+                - 3.times do |i|
+                  %input{type: "radio", name: "stuntSuccesses", class: "radio", value: i, checked: i==0} #{i}
             %li
               %label{for: "willpowerSpend"} Spending Willpower:
-              %input{type: "checkbox", name: "willpowerSpend", class: "checkbox", checked: true}
+              %p{class: "raligner"}
+                %input{type: "checkbox", name: "willpowerSpend", class: "checkbox", checked: true}
         %li
           %strong Charms
           %ul
             %li
               %label{for: "fullExcellency"} Full Craft Excellency:
-              %input{type: "checkbox", name: "fullExcellency", class: "checkbox", checked: true}
+              %p{class: "raligner"}
+                %input{type: "checkbox", name: "fullExcellency", class: "checkbox", checked: true}
             %li
               %strong Essence 1
               %ul
                 %li
                   %label{for: "flawlessHandiworkMethod"} Flawless Handiwork Method:
-                  %input{type: "checkbox", name: "flawlessHandiworkMethod", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "flawlessHandiworkMethod", class: "checkbox", checked: false}
                 %li
                   %label{for: "flawlessHandiworkRepurchase"} Flawless Handiwork Method Repurchase:
-                  %input{type: "checkbox", name: "flawlessHandiworkRepurchase", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "flawlessHandiworkRepurchase", class: "checkbox", checked: false}
                 %li
                   %label{for: "supremeMasterworkFocus"} Supreme Masterwork Focus:
-                  %input{type: "checkbox", name: "supremeMasterworkFocus", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "supremeMasterworkFocus", class: "checkbox", checked: false}
                 %li
                   %label{for: "supremeMasterworkFocusRepurchase"} Supreme Masterwork Focus Repurchase:
-                  %input{type: "checkbox", name: "supremeMasterworkFocusRepurchase", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "supremeMasterworkFocusRepurchase", class: "checkbox", checked: false}
                 %li
                   %label{for: "supremeMasterworkFocus2ndRepurchase"} Supreme Masterwork Focus 2nd Repurchase:
-                  %input{type: "checkbox", name: "supremeMasterworkFocus2ndRepurchase", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "supremeMasterworkFocus2ndRepurchase", class: "checkbox", checked: false}
             %li
               %strong Essence 2
               %ul
                 %li
                   %label{for: "experientialConjuringOfTrueVoid"} Experiential Conjuring of True Void:
-                  %input{type: "checkbox", name: "experientialConjuringOfTrueVoid", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "experientialConjuringOfTrueVoid", class: "checkbox", checked: false}
                 %li
                   %label{for: "unbrokenImageFocus"} Unbroken Image Focus (Purchase Max Allowed):
-                  %input{type: "checkbox", name: "unbrokenImageFocus", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "unbrokenImageFocus", class: "checkbox", checked: false}
                 %li
                   %label{for: "firstMovementOfTheDemiurge"} First Movement of the Demiurge:
-                  %input{type: "checkbox", name: "firstMovementOfTheDemiurge", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "firstMovementOfTheDemiurge", class: "checkbox", checked: false}
                 %li
                   %label{for: "breachHealingMethod"} Breach-Healing Method:
-                  %input{type: "checkbox", name: "breachHealingMethod", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "breachHealingMethod", class: "checkbox", checked: false}
             %li
               %strong Essence 3
               %ul
                 %li
                   %label{for: "divineInspirationTechnique"} Divine Inspiration Technique:
-                  %input{type: "checkbox", name: "divineInspirationTechnique", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "divineInspirationTechnique", class: "checkbox", checked: false}
                 %li
                   %label{for: "inspirationRenewingVision"} Inspiration Renewing Vision: number of free attempts:
-                  %input{type: "number", name: "inspirationRenewingVision", min: "0", value: "0"}
+                  %p{class: "raligner"}
+                    %input{type: "number", name: "inspirationRenewingVision", min: "0", value: "0"}
                 %li
                   %label{for: "mindExpandingMeditation"} Mind-Expanding Meditation:
-                  %input{type: "checkbox", name: "mindExpandingMeditation", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "mindExpandingMeditation", class: "checkbox", checked: false}
                 %li
                   %label{for: "realizingTheFormSupernal"} Realizing the Form Supernal:
-                  %input{type: "checkbox", name: "realizingTheFormSupernal", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "realizingTheFormSupernal", class: "checkbox", checked: false}
                 %li
                   %label{for: "wordsAsWorkshopMethod"} Word-as-Workshop Method: non-charm bonus dice:
-                  %input{type: "number", name: "wordsAsWorkshopMethod", min: "0", value: "0"}
+                  %p{class: "raligner"}
+                    %input{type: "number", name: "wordsAsWorkshopMethod", min: "0", value: "0"}
             %li
               %strong Essence 4
               %ul
                 %li
                   %label{for: "holisticMiracleUnderstanding"} Holistic Miracle Understanding:
-                  %input{type: "checkbox", name: "holisticMiracleUnderstanding", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "holisticMiracleUnderstanding", class: "checkbox", checked: false}
                 %li
                   %label{for: "horizonUnveilingInsight"} Horizon Unveiling Insight:
-                  %input{type: "checkbox", name: "horizonUnveilingInsight", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "horizonUnveilingInsight", class: "checkbox", checked: false}
                 %li
                   %label{for: "unwindingGyreMeditation"} Unwinding Gyre Meditation: previous iterations:
-                  %input{type: "number", name: "unwindingGyreMeditation", min: "0", value: "0"}
+                  %p{class: "raligner"}
+                    %input{type: "number", name: "unwindingGyreMeditation", min: "0", value: "0"}
             %li
               %strong Essence 5
               %ul
                 %li
                   %label{for: "sunHeartTenacity"} Sun-Heart Tenacity:
-                  %input{type: "checkbox", name: "sunHeartTenacity", class: "checkbox", checked: false}
+                  %p{class: "raligner"}
+                    %input{type: "checkbox", name: "sunHeartTenacity", class: "checkbox", checked: false}
         %li
           %strong Statistics Options
           %ul
             %li
               %label{for: "numAttempts"} Number of Crafting Attempts (>=10):
-              %input{type: "number", name: "numAttempts", min: "10", value: "5001"}
-      %input{type: "submit", value: "Roll!", class: "button"}
+              %p{class: "raligner"}
+                %input{type: "number", name: "numAttempts", min: "10", value: "5001"}
+      %p{class: "raligner"}
+        %input{type: "submit", value: "Roll!", class: "button"}
   %fieldset
     %h3= "Attempt Statistics"
     %div
