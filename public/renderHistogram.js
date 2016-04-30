@@ -96,8 +96,8 @@ function renderHistogram(data, hash, theForm) {
     .on("mouseover", function(d) {
       var tooltipText = ["n = " + d[0] + " successes",
                         d[1] + " trials with s = n successes",
-                        (100*d[2]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% trials s >= n",
-                        (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% trials s = n"];
+                        (100*d[2]/theForm.elements.namedItem("numAttempts").value).toFixed(2) + "% trials s >= n",
+                        (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(2) + "% trials s = n"];
       var xPosition = xScale(d[0]);
       var yPosition = 3*(chartHeight - yScale(yMax))/4;
       var tooltipWidth = 2+5*Math.max(tooltipText[0].length,tooltipText[1].length);
