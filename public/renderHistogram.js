@@ -15,6 +15,12 @@ function renderHistogram(data, hash, theForm) {
   var yMin = d3.min(dataset, function(d) {return d[1];});
   var yMax = d3.max(dataset, function(d) {return d[1];});
 
+  $.each(dataset, function(index, item) {
+    var sucGreaterOrEqual = 0;
+    $.each(dataset, function(indexInterior, itemInterior) {if (item[0] <= itemInterior[0]) {sucGreaterOrEqual += itemInterior[1];}});
+    item[2] = sucGreaterOrEqual;
+  });
+
   d3.selectAll("svg > *").remove();
 
   var svg = d3.select("svg")
@@ -88,12 +94,14 @@ function renderHistogram(data, hash, theForm) {
     .attr("height", function(d) {return chartHeight - yScale(d[1]);})
     .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";})
     .on("mouseover", function(d) {
-      var tooltipText = [d[1] + " trials with " + d[0] + " successes",
-                        (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% of all trials"];
+      var tooltipText = ["n = " + d[0] + " successes",
+                        d[1] + " trials with s = n successes",
+                        (100*d[2]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% trials s >= n",
+                        (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(1) + "% trials s = n"];
       var xPosition = xScale(d[0]);
       var yPosition = 3*(chartHeight - yScale(yMax))/4;
       var tooltipWidth = 2+5*Math.max(tooltipText[0].length,tooltipText[1].length);
-      var tooltipHeight = 26;
+      var tooltipHeight = 48;
       svg.append("rect")
         .attr("id", "tooltipRect")
         .attr("class", "noHighlight")
@@ -116,6 +124,14 @@ function renderHistogram(data, hash, theForm) {
         .attr("x", (xPosition))
         .attr("y", yPosition + 11)
         .text(tooltipText[1]);
+      tblock.append("tspan")
+        .attr("x", (xPosition))
+        .attr("y", yPosition + 22)
+        .text(tooltipText[2]);
+      tblock.append("tspan")
+        .attr("x", (xPosition))
+        .attr("y", yPosition + 33)
+        .text(tooltipText[3]);
      })
      .on("mouseout", function() {
       //Hide the tooltip
