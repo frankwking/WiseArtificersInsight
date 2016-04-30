@@ -36,9 +36,10 @@ body {
   margin-right: auto;
   padding-left: 30px;
   padding-right: 30px;
+  background: #eeeeee;
   background: -webkit-linear-gradient(bottom, #CCCCCC, #eeeeee 175px);
   background: -moz-linear-gradient(bottom, #CCCCCC, #eeeeee 175px);
-  background: linear-gradient(bottom, #CCCCCC, #eeeeee 175px);
+  background: linear-gradient(to top, #CCCCCC, #eeeeee 175px);
   font-family: Tahoma, Geneva, sans-serif;
 }
 
@@ -50,9 +51,10 @@ h2 {
 
 /* Fieldset styling */
 fieldset {
+  background: #fffbe6;
   background: -webkit-linear-gradient(bottom, #fff4b3, #fffbe6 175px);
   background: -moz-linear-gradient(bottom, #fff4b3, #fffbe6 175px);
-  background: linear-gradient(bottom, #fff4b3, #fffbe6 175px);
+  background: linear-gradient(to top, #fff4b3, #fffbe6 175px);
   margin: auto;
   position: relative;
   font-size: 14px;
