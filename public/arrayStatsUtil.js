@@ -34,7 +34,7 @@ function arrayStdDev(ary) {
 function arrayPercentAboveThreshold(ary, threshold) {
   var count = 0;
   $.each(ary, function(index) {
-    if (ary[index] > threshold) {
+    if (ary[index] >= threshold) {
       count += 1;
     }
   });
