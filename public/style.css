@@ -24,6 +24,15 @@ svg text {
   pointer-events: none;
 }
 
+body {
+  width: 900px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 h2 {
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 48px;
