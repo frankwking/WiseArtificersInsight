@@ -41,7 +41,7 @@ function fetchResultsJS(theForm,event) {
   data.meanSuc = arrayMean(attemptArray);
   data.medianSuc = arrayMedian(attemptArray);
   data.stdDevSuc = arrayStdDev(attemptArray);
-  data.percentSuc = arrayPercentAboveThreshold(attemptArray,parseInt(hash.targetThreshold));
+  data.percentSuc = 100*arrayPercentAboveThreshold(attemptArray,parseInt(hash.targetThreshold));
   data.initialPoolSize = hash.initialPoolSize;
   data.hist = arrayHistogram(attemptArray);
 
