@@ -88,6 +88,14 @@ input.submit:hover {
   color: #09C;
 }
 
+input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+input[type="radio"] {
+  vertical-align: text-top;
+}
+
 form {
   margin: auto
 }
@@ -101,7 +109,6 @@ h2 {
   clear: right;
   margin: auto;
 }
-
 
 li.form {
     background: #eeeeee;
