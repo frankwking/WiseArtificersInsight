@@ -1,10 +1,14 @@
 function renderHistogram(data, hash, theForm) {
-  var margin = {top: 5, right: 25, bottom: 35, left: 55};
-  var svgWidth = 830;
+  var margin = {top: 5, right: 60, bottom: 35, left: 55};
+  var svgWidth = 865;
   var svgHeight = 380;
   var chartWidth = svgWidth - margin.left - margin.right;
+  var chartLeftBound = margin.left;
+  var chartRightBound = svgWidth - margin.right;
   var chartHeight = svgHeight - margin.top - margin.bottom;
-  var barPadding = 2;
+  var chartTopBound = margin.top;
+  var chartBottomBound = svgHeight - margin.bottom
+  var barPadding = 1;
 
   var dataset = [];
   $.each(data.hist, function(index, item) {dataset.push([parseInt(index), item])});
@@ -27,17 +31,17 @@ function renderHistogram(data, hash, theForm) {
     .attr("width", svgWidth)
     .attr("height", svgHeight);
 
-  var numBars = xMax - xMin;
-  var barWidth = chartWidth / numBars - barPadding;
+  var numBars = xMax - xMin + 2 ;
+  var barWidth = (chartWidth) / numBars - barPadding;
   if(barWidth < 1) {barWidth = 1}
 
   var xScale = d3.scale.linear()
     .domain([xMin-1, xMax+1])
-    .range([margin.left + barWidth/2, chartWidth - barWidth/2]);
+    .range([chartLeftBound, chartRightBound]);
 
   var yScale = d3.scale.linear()
     .domain([0, yMax])
-    .range([chartHeight, margin.top]);
+    .range([chartBottomBound, chartTopBound]);
 
   var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -47,10 +51,10 @@ function renderHistogram(data, hash, theForm) {
     .scale(yScale)
     .orient("left");
 
-  var stdDevBoxes = [[xScale(xMin) - barWidth, xScale(mean - stdDev) -xScale(xMin) + barWidth, "#737373"],
+  var stdDevBoxes = [[chartLeftBound, xScale(mean - stdDev) - chartLeftBound, "#737373"],
                     [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "#999999"],
                     [xScale(mean), xScale(mean + stdDev) - xScale(mean), "#CCCCCC"],
-                    [xScale(mean + stdDev), xScale(xMax) - xScale(mean + stdDev) + barWidth, "#f2f2f2"]];
+                    [xScale(mean + stdDev), chartRightBound - xScale(mean + stdDev), "#f2f2f2"]];
 
   var stdDevLine = [xScale(mean - stdDev), xScale(mean), xScale(mean + stdDev)];
 
@@ -64,9 +68,9 @@ function renderHistogram(data, hash, theForm) {
     .attr("id", "stdDevShading")
     .attr("class", "noHighlight")
     .attr("x", function(d) {return d[0]})
-    .attr("y", yScale(yMax))
+    .attr("y", chartTopBound)
     .attr("width", function(d) {return d[1]})
-    .attr("height", chartHeight - yScale(yMax))
+    .attr("height", chartHeight)
     .attr("fill", function(d) {return d[2]});
 
   // Render mean, +/- stdDev lines
@@ -77,8 +81,8 @@ function renderHistogram(data, hash, theForm) {
     .attr("id", "stdDevLines")
     .attr("x1", function(d) {return d})
     .attr("x2", function(d) {return d})
-    .attr("y1", yScale(yMax))
-    .attr("y2", chartHeight)
+    .attr("y1", chartTopBound)
+    .attr("y2", chartBottomBound)
     .attr("stroke-width", 2)
     .attr("stroke", "black");
 
@@ -91,7 +95,7 @@ function renderHistogram(data, hash, theForm) {
     .attr("x", function(d) {return xScale(d[0]) - barWidth/2;})
     .attr("y", function(d) {return  yScale(d[1]);})
     .attr("width", barWidth)
-    .attr("height", function(d) {return chartHeight - yScale(d[1]);})
+    .attr("height", function(d) {return chartBottomBound - yScale(d[1]);})
     .attr("fill", function(d) {return (d[0] < hash["targetThreshold"]) ? "crimson" : "gold";})
     .on("mouseover", function(d) {
       var tooltipText = ["n = " + d[0] + " successes",
@@ -99,8 +103,8 @@ function renderHistogram(data, hash, theForm) {
                         (100*d[2]/theForm.elements.namedItem("numAttempts").value).toFixed(2) + "% trials s >= n",
                         (100*d[1]/theForm.elements.namedItem("numAttempts").value).toFixed(2) + "% trials s = n"];
       var xPosition = xScale(d[0]);
-      var yPosition = 3*(chartHeight - yScale(yMax))/4;
-      var tooltipWidth = 2+5*Math.max(tooltipText[0].length,tooltipText[1].length);
+      var yPosition = 3*(chartBottomBound - yScale(yMax))/4;
+      var tooltipWidth = 2+5*Math.max(tooltipText[0].length,tooltipText[1].length,tooltipText[2].length, tooltipText[3].length);
       var tooltipHeight = 48;
       svg.append("rect")
         .attr("id", "tooltipRect")
@@ -176,12 +180,13 @@ function renderHistogram(data, hash, theForm) {
   // Render X Axis
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(0," + (chartHeight) + ")")
+    .attr("transform", "translate(0," + chartBottomBound + ")")
     .call(xAxis);
 
   // Render X Axis Label
   svg.append("text")
-    .attr("transform", "translate(" + (chartWidth / 2) + " ," + (chartHeight + margin.bottom) + ")")
+    .attr("transform", "translate(" + (svgWidth / 2) + " ," + svgHeight + ")")
+    .attr("dy", "-0.3em")
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
     .attr("fill", "black")
@@ -191,14 +196,14 @@ function renderHistogram(data, hash, theForm) {
   // Render Y Axis
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(" + (margin.left + barWidth/2) + ", 0)")
+    .attr("transform", "translate(" + chartLeftBound + ", 0)")
     .call(yAxis);
 
   // Render Y Axis Label
   svg.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 0 )
-    .attr("x", 0-chartHeight/2 )
+    .attr("x", 0-(svgHeight)/2 )
     .attr("dy", "1em")
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
