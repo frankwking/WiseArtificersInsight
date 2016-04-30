@@ -101,3 +101,9 @@ h2 {
   clear: right;
   margin: auto;
 }
+
+
+li.form {
+    background: #eeeeee;
+    margin: 2px;
+}
