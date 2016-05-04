@@ -3,6 +3,8 @@ Wise Artificer's Insight is designed to give a player thinking about making an A
 
 The code is written mostly in Javascript.
 
+The live website can be found at [http://frankwking.github.io/WiseArtificersInsight/](http://frankwking.github.io/WiseArtificersInsight/).
+
 ## Files
 File Name | File Contents
 ---- | ----
