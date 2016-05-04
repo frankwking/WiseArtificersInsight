@@ -4,13 +4,15 @@ Wise Artificer's Insight is designed to give a player thinking about making an A
 The code is written mostly in Javascript.
 
 ## Files
-arrayStatsUtil.js: Basic statistics functions
-exaltedCraftingDieRoller.js: Javascript Crafting Die Roller functions
-index.haml: Webpage defined using [HAML](http://haml.info/)
-index.html: Webpage defined html, generated from HAML
-index.js: Javascript called when you click the "Roll!" button and submit the webpage form
-license.md: code use license
-README.md: this file
-renderHistogram.js: Draws the histogram using [d3](https://d3js.org/)
-style.css: defines webpage styling
-[zepto.js](http://zeptojs.com/): Minimalist to provide basic jQuery API functionality
+File Name | File Contents
+---- | ----
+arrayStatsUtil.js | Basic statistics functions
+exaltedCraftingDieRoller.js | Javascript Crafting Die Roller functions
+index.haml | Webpage defined using [HAML](http://haml.info/)
+index.html | Webpage defined html, generated from HAML
+index.js | Javascript called when you click the "Roll!" button and submit the webpage form
+license.md | code use license
+README.md | this file
+renderHistogram.js | Draws the histogram using [d3](https://d3js.org/)
+style.css | defines webpage styling
+[zepto.js](http://zeptojs.com/) | Minimalist to provide basic jQuery API functionality
