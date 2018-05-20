@@ -43,11 +43,11 @@ function renderHistogram(data, hash, theForm) {
     .domain([0, yMax])
     .range([chartBottomBound, chartTopBound]);
 
-  var xAxis = d3.svg.axis()
+  var xAxis = d3.axisBottom()
     .scale(xScale)
     .orient("bottom");
 
-  var yAxis = d3.svg.axis()
+  var yAxis = d3.axisLeft()
     .scale(yScale)
     .orient("left");
 
