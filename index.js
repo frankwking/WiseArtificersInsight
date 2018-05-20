@@ -2,7 +2,7 @@ function fetchResultsJS(theForm,event) {
   event.preventDefault();
 
   var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "intelligence", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold",
-                          "essence", "difficulty", "inspirationRenewingVision", "wordsAsWorkshopMethod", "unwindingGyreMeditation"];
+                          "essence", "difficulty", "inspirationRenewingVision", "wordsAsWorkshopMethod", "unwindingGyreMeditation", "storytellerDice", "storytellerSuccesses"];
   var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "exceptionalEquipment", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
                           "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
                           "firstMovementOfTheDemiurge", "breachHealingMethod", "divineInspirationTechnique", "mindExpandingMeditation", "realizingTheFormSupernal",
@@ -18,7 +18,8 @@ function fetchResultsJS(theForm,event) {
   hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact)*(1 + hash.mindExpandingMeditation) + hash.craftAttribute)*(1 + hash.fullExcellency)
                         + hash.stuntDice + hash.craftSpeciality + hash.exceptionalEquipment
                         + (hash.breachHealingMethod + hash.experientialConjuringOfTrueVoid)*hash.essence
-                        + hash.wordsAsWorkshopMethod;
+                        + hash.wordsAsWorkshopMethod
+                        + hash.storytellerDice;
   if(hash.ess >= 3 && hash.experientialConjuringOfTrueVoid) { hash.initialPoolSize += hash.intelligence; }
   if(hash.breachHealingMethod) { hash.difficulty--; }
 
