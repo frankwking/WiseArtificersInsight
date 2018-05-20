@@ -35,11 +35,11 @@ function renderHistogram(data, hash, theForm) {
   var barWidth = (chartWidth) / numBars - barPadding;
   if(barWidth < 1) {barWidth = 1}
 
-  var xScale = d3.scale.linear()
+  var xScale = d3.scaleLinear()
     .domain([xMin-1, xMax+1])
     .range([chartLeftBound, chartRightBound]);
 
-  var yScale = d3.scale.linear()
+  var yScale = d3.scaleLinear()
     .domain([0, yMax])
     .range([chartBottomBound, chartTopBound]);
 
