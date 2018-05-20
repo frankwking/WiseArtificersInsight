@@ -72,7 +72,8 @@ fieldset {
 
 /* Remove margin from form */
 form {
-  margin: auto
+  margin: auto;
+  overflow: auto;
 }
 
 /* Give list elements in form line highlighting for legiblity */
