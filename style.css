@@ -30,7 +30,7 @@ svg text {
 
 /* Page body styling */
 body {
-  width: 900px;
+  max-width: 900px;
   display: block;
   margin-left: auto;
   margin-right: auto;
