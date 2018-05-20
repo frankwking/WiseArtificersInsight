@@ -9,7 +9,7 @@ function rollPool(hash) {
   var poolSize = hash.initialPoolSize;
 
   var i = 0;
-  var successes = hash.willpowerSpend + hash.stuntSuccesses + hash.experientialConjuringOfTrueVoid;
+  var successes = hash.willpowerSpend + hash.stuntSuccesses + hash.experientialConjuringOfTrueVoid + hash.storytellerSuccesses;
   var resultAry = [0,0,0,0,0,0,0,0,0,0];
   var sucAry = [2,0,0,0,0,0,0,1,1,1];
 
