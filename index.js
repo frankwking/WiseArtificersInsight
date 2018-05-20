@@ -3,7 +3,7 @@ function fetchResultsJS(theForm,event) {
 
   var formIntegerArray = ["craftAbility", "craftArtifact", "craftAttribute", "intelligence", "stuntDice", "stuntSuccesses", "numAttempts", "terminus", "targetThreshold",
                           "essence", "difficulty", "inspirationRenewingVision", "wordsAsWorkshopMethod", "unwindingGyreMeditation"];
-  var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
+  var formBooleanArray = ["craftSpeciality","fullExcellency", "willpowerSpend", "exceptionalEquipment", "flawlessHandiworkMethod", "flawlessHandiworkRepurchase", "supremeMasterworkFocus",
                           "supremeMasterworkFocusRepurchase", "supremeMasterworkFocus2ndRepurchase", "experientialConjuringOfTrueVoid", "unbrokenImageFocus",
                           "firstMovementOfTheDemiurge", "breachHealingMethod", "divineInspirationTechnique", "mindExpandingMeditation", "realizingTheFormSupernal",
                           "holisticMiracleUnderstanding", "horizonUnveilingInsight", "sunHeartTenacity"];
@@ -12,11 +12,11 @@ function fetchResultsJS(theForm,event) {
   var returnIntegerArray = ["medianSuc","initialPoolSize"];
 
   var hash = {};
-  
+
   $.each(formIntegerArray, function(index, item) { hash[item] = parseInt(theForm.elements.namedItem(item).value); });
   $.each(formBooleanArray, function(index, item) { hash[item] = (~~theForm.elements.namedItem(item).checked); });
   hash.initialPoolSize = (Math.min(hash.craftAbility, hash.craftArtifact)*(1 + hash.mindExpandingMeditation) + hash.craftAttribute)*(1 + hash.fullExcellency)
-                        + hash.stuntDice + hash.craftSpeciality
+                        + hash.stuntDice + hash.craftSpeciality + hash.exceptionalEquipment
                         + (hash.breachHealingMethod + hash.experientialConjuringOfTrueVoid)*hash.essence
                         + hash.wordsAsWorkshopMethod;
   if(hash.ess >= 3 && hash.experientialConjuringOfTrueVoid) { hash.initialPoolSize += hash.intelligence; }
