@@ -45,11 +45,9 @@ function renderHistogram(data, hash, theForm) {
 
   var xAxis = d3.axisBottom()
     .scale(xScale);
-//    .orient("bottom");
 
   var yAxis = d3.axisLeft()
     .scale(yScale);
-//    .orient("left");
 
   var stdDevBoxes = [[chartLeftBound, xScale(mean - stdDev) - chartLeftBound, "#737373"],
                     [xScale(mean - stdDev), xScale(mean) - xScale(mean - stdDev), "#999999"],
